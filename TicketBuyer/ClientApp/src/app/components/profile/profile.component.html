@@ -1,0 +1,31 @@
+﻿<div class="row profile">
+	<div class="col-lg-3">
+		<div class="card">
+			<div class="title">User name</div>
+			<div class="card__text profile__about">
+				Female, 24 years, Minsk, Belarus
+			</div>
+			<div class="card__text profile__about">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			</div>
+			<div class="card__text profile__about">
+				<a class="card__link" href="#">Facebook</a> | <a class="card__link" href="#">VK </a>| <a class="card__link" href="#">Instagram</a>
+			</div>
+		</div>
+		<div class="card">
+			<div class="title card__title">Albums</div>
+			<div class="card__text">
+				<ul class="album-list">
+					<li class="album-list__item" *ngFor="let album of albums">{{album}}</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-9">
+		<div class="photo-grid profile__grid">
+			<div class="photo-grid__wrapper" *ngFor="let image of images">
+				<img class="photo-grid__image" src="{{image}}" />
+			</div>
+		</div>
+	</div>
+</div>

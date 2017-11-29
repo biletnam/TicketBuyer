@@ -1,0 +1,19 @@
+.button {
+    height: 50px;
+    background-color: $color-default;
+    border: none;
+    color: white;
+    font-size: 15px;
+    outline: none;
+    transition: ease all 0.4s;
+
+    &:focus,
+    &:hover {
+        background-color: $color-active;
+        transition: ease all 0.4s;
+    }
+
+    &:disabled {
+        background-color: lightgray;
+    }
+}

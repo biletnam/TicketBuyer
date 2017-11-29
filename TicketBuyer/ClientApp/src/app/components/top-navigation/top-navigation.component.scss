@@ -1,0 +1,29 @@
+@import '../../../styles/variables.scss';
+
+.top-navigation {
+    list-style-type: none;
+    text-align: center;
+
+    &__item {
+        display: inline-block;
+        padding: 20px 30px;
+        cursor: pointer;
+
+        &:hover,
+        &--active {
+            border-bottom: solid 3px rgb(255, 211, 62);
+
+            .top-navigation__link {
+                color: rgb(255, 211, 62);
+            }
+        }
+    }
+
+    &__link {
+        &:link,
+        &:visited {
+            color: rgb(120,120,120);
+            text-decoration: none;
+        }
+    }
+}

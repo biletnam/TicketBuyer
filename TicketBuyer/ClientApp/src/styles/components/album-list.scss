@@ -1,0 +1,29 @@
+﻿.album-list {
+    padding-left: 0;
+    list-style-type: none;
+
+    &__link {
+        &:link,
+        &:visited {
+            display: block;
+            color: $color-default;
+            text-decoration: none;
+        }
+    }
+
+    &__item {
+        padding-left: 18px;
+        margin-bottom: 10px;
+
+        &:hover,
+        &--active {
+            padding-left: 15px;
+            border-left: solid 3px $color-active;
+            color: $color-active;
+
+            .album-list__link {
+                color: $color-active;
+            }
+        }
+    }
+}

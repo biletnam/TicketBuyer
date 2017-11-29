@@ -1,0 +1,23 @@
+﻿.photo-grid {
+    column-count: 4;
+    column-gap: 10px;
+
+    &__image {
+        width: 100%;
+        overflow: hidden;
+        transition: all ease 5s;
+        -webkit-backface-visibility: hidden;
+    }
+
+    &__wrapper {
+        margin-bottom: 10px;
+        overflow: hidden;
+
+        &:hover {
+            .photo-grid__image {
+                transform: scale(1.1);
+                transition: all ease 5s;
+            }
+        }
+    }
+}

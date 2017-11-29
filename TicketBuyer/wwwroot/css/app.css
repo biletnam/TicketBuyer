@@ -1,0 +1,98 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins);@import url(https://fonts.googleapis.com/css?family=Unna);body {
+  background-color: whitesmoke;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #787878; }
+
+.card {
+  padding-bottom: 30px; }
+  .card__title {
+    margin-bottom: 20px; }
+  .card__text {
+    line-height: 2; }
+  .card__link:link, .card__link:visited {
+    text-decoration: none;
+    font-style: italic;
+    color: #787878;
+    transition: all ease 0.4s; }
+  .card__link:hover {
+    color: #ffd33e;
+    transition: all ease 0.4s; }
+
+.form__input {
+  width: 100%; }
+
+.form__button {
+  width: 100%;
+  margin-top: 10px; }
+
+.input {
+  height: 50px;
+  padding: 6px 12px;
+  background: none;
+  border: solid 1px #787878;
+  outline: none;
+  transition: ease all 0.4s; }
+  .input:focus {
+    background: white;
+    border: solid 1px #ffd33e;
+    transition: ease all 0.4s; }
+
+.button {
+  height: 50px;
+  background-color: #787878;
+  border: none;
+  color: white;
+  font-size: 15px;
+  outline: none;
+  transition: ease all 0.4s; }
+  .button:focus, .button:hover {
+    background-color: #ffd33e;
+    transition: ease all 0.4s; }
+  .button:disabled {
+    background-color: lightgray; }
+
+.title {
+  font-family: "Unna", serif;
+  font-size: 36px;
+  font-weight: 600;
+  color: black; }
+
+.error {
+  color: darkred; }
+
+.success {
+  color: green; }
+
+.photo-grid {
+  column-count: 4;
+  column-gap: 10px; }
+  .photo-grid__image {
+    width: 100%;
+    overflow: hidden;
+    transition: all ease 5s;
+    -webkit-backface-visibility: hidden; }
+  .photo-grid__wrapper {
+    margin-bottom: 10px;
+    overflow: hidden; }
+    .photo-grid__wrapper:hover .photo-grid__image {
+      transform: scale(1.1);
+      transition: all ease 5s; }
+
+.album-list {
+  padding-left: 0;
+  list-style-type: none; }
+  .album-list__link:link, .album-list__link:visited {
+    display: block;
+    color: #787878;
+    text-decoration: none; }
+  .album-list__item {
+    padding-left: 18px;
+    margin-bottom: 10px; }
+    .album-list__item:hover, .album-list__item--active {
+      padding-left: 15px;
+      border-left: solid 3px #ffd33e;
+      color: #ffd33e; }
+      .album-list__item:hover .album-list__link, .album-list__item--active .album-list__link {
+        color: #ffd33e; }

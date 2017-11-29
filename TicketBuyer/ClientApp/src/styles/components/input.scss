@@ -1,0 +1,14 @@
+﻿.input {
+    height: 50px;
+    padding: 6px 12px;
+    background: none;
+    border: solid 1px $color-default;
+    outline: none;
+    transition: ease all 0.4s;
+
+    &:focus {
+        background: white;
+        border: solid 1px $color-active;
+        transition: ease all 0.4s;
+    }
+}

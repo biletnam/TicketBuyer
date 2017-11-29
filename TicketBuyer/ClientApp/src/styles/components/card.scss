@@ -1,0 +1,26 @@
+﻿.card {
+    padding-bottom: 30px;
+
+    &__title {
+        margin-bottom: 20px;
+    }
+
+    &__text {
+        line-height: 2;
+    }
+
+    &__link {
+        &:link,
+        &:visited {
+            text-decoration: none;
+            font-style: italic;
+            color: $color-default;
+            transition: all ease 0.4s;
+        }
+
+        &:hover {
+            color: $color-active;
+            transition: all ease 0.4s;
+        }
+    }
+}

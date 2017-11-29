@@ -1,0 +1,14 @@
+@import '../../../styles/variables.scss';
+
+.profile {
+    padding-top: 20px;
+
+    &__about {
+        margin-top: 20px;
+    }
+
+    &__grid {
+        column-count: 3;
+    }
+}
+
