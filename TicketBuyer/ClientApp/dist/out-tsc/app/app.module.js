@@ -12,6 +12,7 @@ var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
 var auth_service_1 = require("./services/auth.service");
+var user_service_1 = require("./services/user.service");
 var app_component_1 = require("./components/app/app.component");
 var top_navigation_component_1 = require("./components/top-navigation/top-navigation.component");
 var main_component_1 = require("./components/main/main.component");
@@ -47,7 +48,7 @@ AppModule = __decorate([
             forms_1.ReactiveFormsModule,
             forms_1.FormsModule
         ],
-        providers: [auth_service_1.AuthService],
+        providers: [auth_service_1.AuthService, user_service_1.UserService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

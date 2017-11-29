@@ -122,7 +122,8 @@ namespace TicketBuyer.DataAccessLayer.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     PaymentId = table.Column<int>(nullable: true),
                     Status = table.Column<int>(nullable: false),
                     UserId = table.Column<int>(nullable: false)
@@ -131,11 +132,11 @@ namespace TicketBuyer.DataAccessLayer.Migrations
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_Payments_Id",
-                        column: x => x.Id,
+                        name: "FK_Orders_Payments_PaymentId",
+                        column: x => x.PaymentId,
                         principalTable: "Payments",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Orders_Users_UserId",
                         column: x => x.UserId,
@@ -326,6 +327,11 @@ namespace TicketBuyer.DataAccessLayer.Migrations
                 name: "IX_Events_PlaceId",
                 table: "Events",
                 column: "PlaceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_PaymentId",
+                table: "Orders",
+                column: "PaymentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_UserId",

@@ -6,7 +6,7 @@ namespace TicketBuyer.BusinessLogicLayer.Interfaces
 {
     public interface ITicketService
     {
-        IList<TicketDTO> GetTickets(int orderId);
+        IList<Ticket> GetTickets(int orderId);
 
         void AddTickets(IList<TicketDTO> tickets);
 

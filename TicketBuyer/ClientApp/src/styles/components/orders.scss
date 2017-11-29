@@ -1,0 +1,10 @@
+.orders {
+    &__item {
+        border: lightgrey solid 1px;
+        padding: 20px;
+    }
+
+    &__title {
+        font-size: 20px;
+    }
+}

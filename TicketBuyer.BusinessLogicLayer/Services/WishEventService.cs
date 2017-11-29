@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TicketBuyer.BusinessLogicLayer.DTO;
 using TicketBuyer.BusinessLogicLayer.Interfaces;
 using TicketBuyer.DataAccessLayer.Entities;
 using TicketBuyer.DataAccessLayer.Interfaces;
@@ -17,39 +16,34 @@ namespace TicketBuyer.BusinessLogicLayer.Services
             _unitOfWork = unitOfWork;
         }
 
-        public IList<WishEventDTO> GetWishEvents(int userId)
+        public bool IsWishEventExist(int userId, int eventId)
+        {
+            return _unitOfWork.WishEventRepository.Find(x => x.UserId == userId && x.EventId == eventId).Any();
+        }
+
+        public IList<Event> GetWishEvents(int userId)
         {
             var wishEvents = _unitOfWork.WishEventRepository.Find(x => x.UserId == userId);
 
-            return wishEvents.Select(x => new WishEventDTO
-            {
-                Id = x.Id,
-                Event = new EventLiteDTO
-                {
-                    Id = x.Event.Id,
-                    Name = x.Event.Name,
-                    DateTime = x.Event.DateTime,
-                    Type = x.Event.Type
-                },
-            }).ToList();
+            return wishEvents.Select(x => x.Event).ToList();
         }
 
-        public void AddWishEvent(WishEventDTO wishEventDto)
+        public void AddWishEvent(int userId, int eventId)
         {
-            if (!_unitOfWork.UserRepository.Find(x => x.Id == wishEventDto.UserId).Any())
+            if (!_unitOfWork.UserRepository.Find(x => x.Id == userId).Any())
             {
                 throw new Exception();
             }
 
-            if (!_unitOfWork.EventRepository.Find(x => x.Id == wishEventDto.EventId).Any())
+            if (!_unitOfWork.EventRepository.Find(x => x.Id == eventId).Any())
             {
                 throw new Exception();
             }
 
             var wishEvent = new WishEvent
             {
-                UserId = wishEventDto.UserId,
-                EventId = wishEventDto.EventId
+                UserId = userId,
+                EventId = eventId
             };
 
             _unitOfWork.WishEventRepository.Add(wishEvent);

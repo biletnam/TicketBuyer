@@ -20,17 +20,12 @@ namespace TicketBuyer.BusinessLogicLayer.Services
             _ticketService = ticketService;
         }
 
-        public IList<OrderDTO> GetOrders(int userId)
+        public IList<Order> GetOrders(int userId)
         {
-            var orders = _unitOfWork.OrderRepository.Find(x => x.UserId == userId);
-            
-            return orders.Select(x => new OrderDTO
-            {
-                Id = x.Id,
-                Status = x.Status,
-                Tickets = _ticketService.GetTickets(x.Id),
-                Payment = x.PaymentId.HasValue ? new PaymentDTO { Id = x.PaymentId.Value, DateTime = x.Payment.DateTime } : null
-            }).ToList();
+            var orders = _unitOfWork.OrderRepository.Find(x => x.UserId == userId).ToList();
+            orders.ForEach(x => { x.Tickets = _ticketService.GetTickets(x.Id); });
+
+            return orders.ToList();
         }
 
         public void CreateOrder(OrderDTO orderDto)

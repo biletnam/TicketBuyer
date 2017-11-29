@@ -6,9 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\models\Event.ts" />
+    <None Remove="ClientApp\src\app\models\Order.ts" />
+    <None Remove="ClientApp\src\app\models\Place.ts" />
     <None Remove="ClientApp\src\app\models\RequestResult.ts" />
-    <None Remove="ClientApp\src\app\models\SignUpUser.ts" />
+    <None Remove="ClientApp\src\app\models\Sector.ts" />
+    <None Remove="ClientApp\src\app\models\Ticket.ts" />
     <None Remove="ClientApp\src\app\models\User.ts" />
+    <None Remove="ClientApp\src\app\models\UserPage.ts" />
     <None Remove="ClientApp\src\app\services\auth.service.ts" />
     <None Remove="ClientApp\src\vendor.ts" />
   </ItemGroup>
@@ -30,11 +35,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\models\Event.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\Order.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\Place.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\RequestResult.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\models\SignUpUser.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\models\SignInUser.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\Sector.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\Ticket.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\User.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\UserPage.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\auth.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\user.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\vendor.ts" />
   </ItemGroup>
 

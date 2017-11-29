@@ -5,19 +5,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var user_service_1 = require("../../services/user.service");
 var ProfileComponent = (function () {
-    function ProfileComponent() {
-        this.title = 'Profile';
-        this.albums = ['All', 'Nature', 'People'];
-        this.images = [
-            'http://luxfon.com/images/201302/luxfon.com_19801.jpg',
-            'http://media-cache-ec0.pinimg.com/736x/c3/10/22/c3102281f88237e7a2515099d2e6651f.jpg',
-            'http://media-cache-ak0.pinimg.com/736x/2e/7f/db/2e7fdb7ed765973407fed0b0141bb126.jpg',
-            'http://media-cache-ec0.pinimg.com/600x/97/35/91/97359142dce582b4530cb0f23fbe2e43.jpg'
-        ];
+    function ProfileComponent(userService) {
+        this.userService = userService;
     }
+    ProfileComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.userService.getUserProfile().subscribe(function (response) {
+            var result = response.json();
+            if (result.state == 1) {
+                _this.userPage = result.data;
+            }
+        });
+    };
     return ProfileComponent;
 }());
 ProfileComponent = __decorate([
@@ -25,7 +31,8 @@ ProfileComponent = __decorate([
         selector: 'profile',
         templateUrl: './profile.component.html',
         styleUrls: ['./profile.component.scss']
-    })
+    }),
+    __metadata("design:paramtypes", [user_service_1.UserService])
 ], ProfileComponent);
 exports.ProfileComponent = ProfileComponent;
 //# sourceMappingURL=profile.component.js.map

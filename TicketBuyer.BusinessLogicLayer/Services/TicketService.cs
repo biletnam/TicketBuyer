@@ -17,28 +17,11 @@ namespace TicketBuyer.BusinessLogicLayer.Services
             _unitOfWork = unitOfWork;
         }
 
-        public IList<TicketDTO> GetTickets(int orderId)
+        public IList<Ticket> GetTickets(int orderId)
         {
             var tickets = _unitOfWork.TicketRepository.Find(x => x.OrderId == orderId);
 
-            return tickets.Select(x => new TicketDTO
-            {
-                Id = x.Id,
-                Event = new EventDTO
-                {
-                    Id = x.EventId,
-                    DateTime = x.Event.DateTime,
-                    Name = x.Event.Name,
-                    Place = new PlaceLiteDTO
-                    {
-                        Id = x.Event.PlaceId,
-                        Address = x.Event.Place.Address,
-                        Name = x.Event.Place.Name
-                    }
-                },
-                Sector = new SectorDTO {Id = x.SectorId, Title = x.Sector.Title},
-                Price = x.Price
-            }).ToList();
+            return tickets.ToList();
         }
 
         public void AddTickets(IList<TicketDTO> tickets)

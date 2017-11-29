@@ -20,6 +20,7 @@ var SignUpComponent = (function () {
         this.http = http;
         this.router = router;
         this.fb = fb;
+        this.isSignedUp = false;
     }
     SignUpComponent.prototype.ngOnInit = function () {
         this.form = this.fb.group({
@@ -29,13 +30,15 @@ var SignUpComponent = (function () {
         });
     };
     SignUpComponent.prototype.onSubmit = function () {
+        var _this = this;
         this.authService.register(this.form.get('email').value, this.form.get('password').value, this.form.get('username').value)
             .then(function (result) {
             if (result.state == 1) {
-                //this.router.navigate(["/sign-in"]);
+                _this.errorMessage = null;
+                _this.isSignedUp = true;
             }
             else {
-                alert(result.message);
+                _this.errorMessage = result.message;
             }
         });
     };

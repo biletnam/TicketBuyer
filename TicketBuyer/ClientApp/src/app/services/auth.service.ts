@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Http } from '@angular/http';
 import { RequestResult } from '../models/RequestResult';
-import { SignInUser } from '../models/SignInUser';
-import { SignUpUser } from '../models/SignUpUser';
 
 @Injectable()
 export class AuthService {
@@ -12,6 +10,10 @@ export class AuthService {
     constructor(
         private http: Http
     ) { }
+
+    getCurrentUser() {
+        return this.http.get("api/Auth").toPromise();
+    }
 
     login(email: string, password: string): Promise<RequestResult> {
         return this.http.post("api/Auth/Login", { Email: email, Password: password }).toPromise()

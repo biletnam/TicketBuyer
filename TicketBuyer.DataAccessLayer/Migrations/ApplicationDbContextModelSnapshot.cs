@@ -83,7 +83,8 @@ namespace TicketBuyer.DataAccessLayer.Migrations
 
             modelBuilder.Entity("TicketBuyer.DataAccessLayer.Entities.Order", b =>
                 {
-                    b.Property<int>("Id");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int?>("PaymentId");
 
@@ -92,6 +93,8 @@ namespace TicketBuyer.DataAccessLayer.Migrations
                     b.Property<int>("UserId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PaymentId");
 
                     b.HasIndex("UserId");
 
@@ -298,8 +301,7 @@ namespace TicketBuyer.DataAccessLayer.Migrations
                 {
                     b.HasOne("TicketBuyer.DataAccessLayer.Entities.Payment", "Payment")
                         .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PaymentId");
 
                     b.HasOne("TicketBuyer.DataAccessLayer.Entities.User", "User")
                         .WithMany("Orders")

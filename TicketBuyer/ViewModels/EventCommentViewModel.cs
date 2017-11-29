@@ -13,7 +13,7 @@ namespace TicketBuyer.ViewModels
 
         public int UserId { get; set; }
 
-        public UserViewModel User { get; set; }
+        public UserPageViewModel User { get; set; }
 
         public DateTime DateTime { get; set; }
     }

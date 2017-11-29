@@ -1,31 +1,62 @@
-﻿<div class="row profile">
+<div class="row profile">
 	<div class="col-lg-3">
 		<div class="card">
-			<div class="title">User name</div>
+			<div class="title">User | {{userPage?.user.username}}</div>
 			<div class="card__text profile__about">
-				Female, 24 years, Minsk, Belarus
-			</div>
-			<div class="card__text profile__about">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-			</div>
-			<div class="card__text profile__about">
-				<a class="card__link" href="#">Facebook</a> | <a class="card__link" href="#">VK </a>| <a class="card__link" href="#">Instagram</a>
+				{{userPage?.user.email}}
 			</div>
 		</div>
 		<div class="card">
-			<div class="title card__title">Albums</div>
+			<div class="title">Wish List</div>
 			<div class="card__text">
-				<ul class="album-list">
-					<li class="album-list__item" *ngFor="let album of albums">{{album}}</li>
+				<ul class="wish-list">
+				    <li class="wish-list__item" *ngFor="let wishEvent of userPage?.wishEvents">
+				        <p class="wish-list__title">
+				            {{wishEvent.name}}
+				        </p>
+                         {{wishEvent.dateTime | date}}
+				    </li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-9">
-		<div class="photo-grid profile__grid">
-			<div class="photo-grid__wrapper" *ngFor="let image of images">
-				<img class="photo-grid__image" src="{{image}}" />
-			</div>
-		</div>
-	</div>
+    <div class="col-lg-9">
+        <div class="card">
+            <div class="title">Orders Info</div>
+            <div class="card__text">
+                waiting for payment | paid | canceled
+                <div class="orders">
+                    <div *ngFor="let order of userPage?.orders">
+                        <div class="orders__item">
+                            <div class="orders__title">#{{order.id}} Tickets</div>
+                            <button>Pay</button><button>Cancel</button>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Event</th>
+                                    <th>Date</th>
+                                    <th>Place</th>
+                                    <th>Price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let ticket of order.tickets; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{ticket.event.name}}</td>
+                                    <td>{{ticket.event.dateTime | date}}</td>
+       
+                                    <td>Place, Address, {{ticket.sector.title}}, Seating</td>
+                                    
+                                    <td>{{ticket.price}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

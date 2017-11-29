@@ -19,7 +19,7 @@ namespace TicketBuyer.DataAccessLayer.Entities
         [ForeignKey("UserId")]
         public User User { get; set; }
 
-        [ForeignKey("Id")]
+        [ForeignKey("PaymentId")]
         public Payment Payment { get; set; }
 
         public ICollection<Ticket> Tickets { get; set; }

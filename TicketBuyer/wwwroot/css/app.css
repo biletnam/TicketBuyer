@@ -55,7 +55,7 @@
 
 .title {
   font-family: "Unna", serif;
-  font-size: 36px;
+  font-size: 34px;
   font-weight: 600;
   color: black; }
 
@@ -80,19 +80,32 @@
       transform: scale(1.1);
       transition: all ease 5s; }
 
-.album-list {
+.wish-list {
   padding-left: 0;
   list-style-type: none; }
-  .album-list__link:link, .album-list__link:visited {
+  .wish-list__link:link, .wish-list__link:visited {
     display: block;
     color: #787878;
     text-decoration: none; }
-  .album-list__item {
-    padding-left: 18px;
-    margin-bottom: 10px; }
-    .album-list__item:hover, .album-list__item--active {
-      padding-left: 15px;
-      border-left: solid 3px #ffd33e;
-      color: #ffd33e; }
-      .album-list__item:hover .album-list__link, .album-list__item--active .album-list__link {
+  .wish-list__item {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: #F5F5F5 solid 1px;
+    transition: all ease 0.4s; }
+    .wish-list__item:hover, .wish-list__item--active {
+      border: solid 1px #ffd33e;
+      color: #ffd33e;
+      transition: all ease 0.4s; }
+      .wish-list__item:hover .wish-list__link, .wish-list__item--active .wish-list__link {
         color: #ffd33e; }
+  .wish-list__title {
+    font-size: 20px;
+    margin-bottom: 0;
+    line-height: 1.5; }
+
+.orders__item {
+  border: lightgrey solid 1px;
+  padding: 20px; }
+
+.orders__title {
+  font-size: 20px; }

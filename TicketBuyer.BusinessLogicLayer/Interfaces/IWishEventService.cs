@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
 using TicketBuyer.BusinessLogicLayer.DTO;
+using TicketBuyer.DataAccessLayer.Entities;
 
 namespace TicketBuyer.BusinessLogicLayer.Interfaces
 {
     public interface IWishEventService
     {
-        IList<WishEventDTO> GetWishEvents(int userId);
+        bool IsWishEventExist(int userId, int eventId);
 
-        void AddWishEvent(WishEventDTO wishEventDto);
+        IList<Event> GetWishEvents(int userId);
+
+        void AddWishEvent(int userId, int eventId);
 
         void RemoveWishEvent(int wishEventId);
     }

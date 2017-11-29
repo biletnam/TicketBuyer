@@ -5,6 +5,7 @@ import { HttpModule } from "@angular/http";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
 
 import { AppComponent } from './components/app/app.component';
 import { TopNavigationComponent } from './components/top-navigation/top-navigation.component';
@@ -38,7 +39,7 @@ const appRoutes: Routes = [
       ReactiveFormsModule,
       FormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

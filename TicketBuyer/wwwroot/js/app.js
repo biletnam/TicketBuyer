@@ -72,7 +72,7 @@
 
 var root_1 = __webpack_require__(11);
 var toSubscriber_1 = __webpack_require__(133);
-var observable_1 = __webpack_require__(44);
+var observable_1 = __webpack_require__(45);
 var pipe_1 = __webpack_require__(74);
 /**
  * A representation of any set of values over any amount of time. This is the most basic building block
@@ -389,7 +389,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 var isFunction_1 = __webpack_require__(70);
 var Subscription_1 = __webpack_require__(26);
 var Observer_1 = __webpack_require__(73);
-var rxSubscriber_1 = __webpack_require__(43);
+var rxSubscriber_1 = __webpack_require__(44);
 /**
  * Implements the {@link Observer} interface and extends the
  * {@link Subscription} class. While the {@link Observer} is the public API for
@@ -17590,7 +17590,7 @@ var Subscriber_1 = __webpack_require__(2);
 var Subscription_1 = __webpack_require__(26);
 var ObjectUnsubscribedError_1 = __webpack_require__(80);
 var SubjectSubscription_1 = __webpack_require__(145);
-var rxSubscriber_1 = __webpack_require__(43);
+var rxSubscriber_1 = __webpack_require__(44);
 /**
  * @class SubjectSubscriber<T>
  */
@@ -17802,7 +17802,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵh", function() { return _createNgProbe; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵd", function() { return EventManagerPlugin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵe", function() { return DomSanitizerImpl; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_tslib__ = __webpack_require__(9);
 /**
@@ -23059,7 +23059,7 @@ module.exports = g;
 
 "use strict";
 
-var isArray_1 = __webpack_require__(42);
+var isArray_1 = __webpack_require__(43);
 var isObject_1 = __webpack_require__(71);
 var isFunction_1 = __webpack_require__(70);
 var tryCatch_1 = __webpack_require__(134);
@@ -23340,7 +23340,61 @@ exports.EmptyObservable = EmptyObservable;
 //# sourceMappingURL=EmptyObservable.js.map
 
 /***/ }),
-/* 28 */,
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(3);
+var http_1 = __webpack_require__(55);
+var AuthService = (function () {
+    function AuthService(http) {
+        this.http = http;
+        this.tokenKey = "token";
+    }
+    AuthService.prototype.getCurrentUser = function () {
+        return this.http.get("api/Auth").toPromise();
+    };
+    AuthService.prototype.login = function (email, password) {
+        return this.http.post("api/Auth/Login", { Email: email, Password: password }).toPromise()
+            .then(function (response) {
+            var result = response.json();
+            if (result.state == 1) {
+            }
+            return result;
+        });
+    };
+    AuthService.prototype.register = function (email, password, username) {
+        return this.http
+            .post("api/Auth/Register", { Username: username, Email: email, Password: password })
+            .toPromise()
+            .then(function (response) {
+            var result = response.json();
+            if (result.state == 1) {
+            }
+            return result;
+        });
+    };
+    AuthService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], AuthService);
+    return AuthService;
+}());
+exports.AuthService = AuthService;
+
+
+/***/ }),
 /* 29 */,
 /* 30 */,
 /* 31 */,
@@ -23354,7 +23408,8 @@ exports.EmptyObservable = EmptyObservable;
 /* 39 */,
 /* 40 */,
 /* 41 */,
-/* 42 */
+/* 42 */,
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23363,7 +23418,7 @@ exports.isArray = Array.isArray || (function (x) { return x && typeof x.length =
 //# sourceMappingURL=isArray.js.map
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23379,7 +23434,7 @@ exports.$$rxSubscriber = exports.rxSubscriber;
 //# sourceMappingURL=rxSubscriber.js.map
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23411,7 +23466,7 @@ exports.$$observable = exports.observable;
 //# sourceMappingURL=observable.js.map
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23539,12 +23594,12 @@ exports.ArrayObservable = ArrayObservable;
 //# sourceMappingURL=ArrayObservable.js.map
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var mergeMap_1 = __webpack_require__(47);
+var mergeMap_1 = __webpack_require__(48);
 var identity_1 = __webpack_require__(140);
 /**
  * Converts a higher-order Observable into a first-order Observable which
@@ -23598,7 +23653,7 @@ exports.mergeAll = mergeAll;
 //# sourceMappingURL=mergeAll.js.map
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23608,8 +23663,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var subscribeToResult_1 = __webpack_require__(48);
-var OuterSubscriber_1 = __webpack_require__(50);
+var subscribeToResult_1 = __webpack_require__(49);
+var OuterSubscriber_1 = __webpack_require__(51);
 /* tslint:enable:max-line-length */
 /**
  * Projects each source value to an Observable which is merged in the output
@@ -23777,7 +23832,7 @@ exports.MergeMapSubscriber = MergeMapSubscriber;
 //# sourceMappingURL=mergeMap.js.map
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23787,9 +23842,9 @@ var isArrayLike_1 = __webpack_require__(78);
 var isPromise_1 = __webpack_require__(79);
 var isObject_1 = __webpack_require__(71);
 var Observable_1 = __webpack_require__(1);
-var iterator_1 = __webpack_require__(49);
+var iterator_1 = __webpack_require__(50);
 var InnerSubscriber_1 = __webpack_require__(139);
-var observable_1 = __webpack_require__(44);
+var observable_1 = __webpack_require__(45);
 function subscribeToResult(outerSubscriber, result, outerValue, outerIndex) {
     var destination = new InnerSubscriber_1.InnerSubscriber(outerSubscriber, outerValue, outerIndex);
     if (destination.closed) {
@@ -23862,7 +23917,7 @@ exports.subscribeToResult = subscribeToResult;
 //# sourceMappingURL=subscribeToResult.js.map
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23906,7 +23961,7 @@ exports.$$iterator = exports.iterator;
 //# sourceMappingURL=iterator.js.map
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23942,7 +23997,7 @@ exports.OuterSubscriber = OuterSubscriber;
 //# sourceMappingURL=OuterSubscriber.js.map
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30529,7 +30584,7 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["Version"]('5.0.3'
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30594,7 +30649,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵe", function() { return setupRouter; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵk", function() { return Tree; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵl", function() { return TreeNode; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_tslib__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__ = __webpack_require__(147);
@@ -30619,7 +30674,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_concatAll___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_operator_concatAll__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_operator_first__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_operator_first___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_rxjs_operator_first__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs_util_EmptyError__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs_util_EmptyError__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs_util_EmptyError___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_rxjs_util_EmptyError__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_rxjs_observable_fromPromise__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_rxjs_observable_fromPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_rxjs_observable_fromPromise__);
@@ -37939,7 +37994,7 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('5.0.3'
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37973,7 +38028,7 @@ exports.EmptyError = EmptyError;
 //# sourceMappingURL=EmptyError.js.map
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -40758,7 +40813,7 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["Version"]('5.0.3'
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48986,58 +49041,6 @@ var ReactiveFormsModule = (function () {
 
 
 /***/ }),
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(3);
-var http_1 = __webpack_require__(54);
-var AuthService = (function () {
-    function AuthService(http) {
-        this.http = http;
-        this.tokenKey = "token";
-    }
-    AuthService.prototype.login = function (email, password) {
-        return this.http.post("api/Auth/Login", { Email: email, Password: password }).toPromise()
-            .then(function (response) {
-            var result = response.json();
-            if (result.state == 1) {
-            }
-            return result;
-        });
-    };
-    AuthService.prototype.register = function (email, password, username) {
-        return this.http
-            .post("api/Auth/Register", { Username: username, Email: email, Password: password })
-            .toPromise()
-            .then(function (response) {
-            var result = response.json();
-            if (result.state == 1) {
-            }
-            return result;
-        });
-    };
-    AuthService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.Http])
-    ], AuthService);
-    return AuthService;
-}());
-exports.AuthService = AuthService;
-
-
-/***/ }),
 /* 57 */,
 /* 58 */,
 /* 59 */,
@@ -49136,8 +49139,8 @@ exports.pipeFromArray = pipeFromArray;
 "use strict";
 
 var Observable_1 = __webpack_require__(1);
-var ArrayObservable_1 = __webpack_require__(45);
-var mergeAll_1 = __webpack_require__(46);
+var ArrayObservable_1 = __webpack_require__(46);
+var mergeAll_1 = __webpack_require__(47);
 var isScheduler_1 = __webpack_require__(77);
 /* tslint:enable:max-line-length */
 function merge() {
@@ -49733,7 +49736,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵb", function() { return CachedResourceLoader; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_compiler__ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_tslib__ = __webpack_require__(9);
 /**
@@ -85086,7 +85089,7 @@ var Extractor = (function () {
 "use strict";
 
 var Subscriber_1 = __webpack_require__(2);
-var rxSubscriber_1 = __webpack_require__(43);
+var rxSubscriber_1 = __webpack_require__(44);
 var Observer_1 = __webpack_require__(73);
 function toSubscriber(nextOrObserver, error, complete) {
     if (nextOrObserver) {
@@ -85665,10 +85668,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var platform_browser_1 = __webpack_require__(18);
 var core_1 = __webpack_require__(3);
-var router_1 = __webpack_require__(52);
-var http_1 = __webpack_require__(54);
-var forms_1 = __webpack_require__(55);
-var auth_service_1 = __webpack_require__(56);
+var router_1 = __webpack_require__(53);
+var http_1 = __webpack_require__(55);
+var forms_1 = __webpack_require__(56);
+var auth_service_1 = __webpack_require__(28);
+var user_service_1 = __webpack_require__(209);
 var app_component_1 = __webpack_require__(180);
 var top_navigation_component_1 = __webpack_require__(183);
 var main_component_1 = __webpack_require__(186);
@@ -85702,7 +85706,7 @@ var AppModule = (function () {
                 forms_1.ReactiveFormsModule,
                 forms_1.FormsModule
             ],
-            providers: [auth_service_1.AuthService],
+            providers: [auth_service_1.AuthService, user_service_1.UserService],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);
@@ -85772,7 +85776,7 @@ exports.BehaviorSubject = BehaviorSubject;
 
 "use strict";
 
-var ArrayObservable_1 = __webpack_require__(45);
+var ArrayObservable_1 = __webpack_require__(46);
 exports.of = ArrayObservable_1.ArrayObservable.of;
 //# sourceMappingURL=of.js.map
 
@@ -85855,7 +85859,7 @@ exports.concatMap = concatMap;
 
 "use strict";
 
-var mergeMap_1 = __webpack_require__(47);
+var mergeMap_1 = __webpack_require__(48);
 /* tslint:enable:max-line-length */
 /**
  * Projects each source value to an Observable which is merged in the output
@@ -86023,7 +86027,7 @@ var MapSubscriber = (function (_super) {
 
 "use strict";
 
-var mergeMap_1 = __webpack_require__(47);
+var mergeMap_1 = __webpack_require__(48);
 /* tslint:enable:max-line-length */
 /**
  * Projects each source value to an Observable which is merged in the output
@@ -86111,17 +86115,17 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var isArray_1 = __webpack_require__(42);
+var isArray_1 = __webpack_require__(43);
 var isArrayLike_1 = __webpack_require__(78);
 var isPromise_1 = __webpack_require__(79);
 var PromiseObservable_1 = __webpack_require__(84);
 var IteratorObservable_1 = __webpack_require__(155);
-var ArrayObservable_1 = __webpack_require__(45);
+var ArrayObservable_1 = __webpack_require__(46);
 var ArrayLikeObservable_1 = __webpack_require__(156);
-var iterator_1 = __webpack_require__(49);
+var iterator_1 = __webpack_require__(50);
 var Observable_1 = __webpack_require__(1);
 var observeOn_1 = __webpack_require__(157);
-var observable_1 = __webpack_require__(44);
+var observable_1 = __webpack_require__(45);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -86241,7 +86245,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var root_1 = __webpack_require__(11);
 var Observable_1 = __webpack_require__(1);
-var iterator_1 = __webpack_require__(49);
+var iterator_1 = __webpack_require__(50);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -86810,8 +86814,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var OuterSubscriber_1 = __webpack_require__(50);
-var subscribeToResult_1 = __webpack_require__(48);
+var OuterSubscriber_1 = __webpack_require__(51);
+var subscribeToResult_1 = __webpack_require__(49);
 /**
  * Catches errors on the observable to be handled by returning a new observable or throwing an error.
  *
@@ -86989,7 +86993,7 @@ exports.concatAll = concatAll;
 
 "use strict";
 
-var mergeAll_1 = __webpack_require__(46);
+var mergeAll_1 = __webpack_require__(47);
 /**
  * Converts a higher-order Observable into a first-order Observable by
  * concatenating the inner Observables in order.
@@ -87118,7 +87122,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(2);
-var EmptyError_1 = __webpack_require__(53);
+var EmptyError_1 = __webpack_require__(54);
 /**
  * Emits only the first value (or the first value that meets some condition)
  * emitted by the source Observable.
@@ -87414,7 +87418,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(2);
-var EmptyError_1 = __webpack_require__(53);
+var EmptyError_1 = __webpack_require__(54);
 /* tslint:enable:max-line-length */
 /**
  * Returns an Observable that emits only the last item emitted by the source Observable.
@@ -87533,7 +87537,7 @@ var LastSubscriber = (function (_super) {
 
 "use strict";
 
-var mergeAll_1 = __webpack_require__(46);
+var mergeAll_1 = __webpack_require__(47);
 /**
  * Converts a higher-order Observable into a first-order Observable which
  * concurrently delivers all values that are emitted on the inner Observables.
@@ -88261,9 +88265,9 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var Observable_1 = __webpack_require__(1);
 var EmptyObservable_1 = __webpack_require__(27);
-var isArray_1 = __webpack_require__(42);
-var subscribeToResult_1 = __webpack_require__(48);
-var OuterSubscriber_1 = __webpack_require__(50);
+var isArray_1 = __webpack_require__(43);
+var subscribeToResult_1 = __webpack_require__(49);
+var OuterSubscriber_1 = __webpack_require__(51);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -88605,9 +88609,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(3);
-var router_1 = __webpack_require__(52);
-var forms_1 = __webpack_require__(55);
-var auth_service_1 = __webpack_require__(56);
+var router_1 = __webpack_require__(53);
+var forms_1 = __webpack_require__(56);
+var auth_service_1 = __webpack_require__(28);
 var SignInComponent = (function () {
     function SignInComponent(authService, router, fb) {
         this.authService = authService;
@@ -88673,10 +88677,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(3);
-var http_1 = __webpack_require__(54);
-var forms_1 = __webpack_require__(55);
-var router_1 = __webpack_require__(52);
-var auth_service_1 = __webpack_require__(56);
+var http_1 = __webpack_require__(55);
+var forms_1 = __webpack_require__(56);
+var router_1 = __webpack_require__(53);
+var auth_service_1 = __webpack_require__(28);
 var SignUpComponent = (function () {
     function SignUpComponent(authService, http, router, fb) {
         this.authService = authService;
@@ -88745,25 +88749,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(3);
+var user_service_1 = __webpack_require__(209);
 var ProfileComponent = (function () {
-    function ProfileComponent() {
-        this.title = 'Profile';
-        this.albums = ['All', 'Nature', 'People'];
-        this.images = [
-            'http://luxfon.com/images/201302/luxfon.com_19801.jpg',
-            'http://media-cache-ec0.pinimg.com/736x/c3/10/22/c3102281f88237e7a2515099d2e6651f.jpg',
-            'http://media-cache-ak0.pinimg.com/736x/2e/7f/db/2e7fdb7ed765973407fed0b0141bb126.jpg',
-            'http://media-cache-ec0.pinimg.com/600x/97/35/91/97359142dce582b4530cb0f23fbe2e43.jpg'
-        ];
+    function ProfileComponent(userService) {
+        this.userService = userService;
     }
+    ProfileComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.userService.getUserProfile().subscribe(function (response) {
+            var result = response.json();
+            if (result.state == 1) {
+                _this.userPage = result.data;
+            }
+        });
+    };
     ProfileComponent = __decorate([
         core_1.Component({
             selector: 'profile',
-            template: __webpack_require__(196),
-            styles: [__webpack_require__(197)]
-        })
+            template: __webpack_require__(197),
+            styles: [__webpack_require__(198)]
+        }),
+        __metadata("design:paramtypes", [user_service_1.UserService])
     ], ProfileComponent);
     return ProfileComponent;
 }());
@@ -88771,16 +88782,62 @@ exports.ProfileComponent = ProfileComponent;
 
 
 /***/ }),
-/* 196 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row profile\">\r\n\t<div class=\"col-lg-3\">\r\n\t\t<div class=\"card\">\r\n\t\t\t<div class=\"title\">User name</div>\r\n\t\t\t<div class=\"card__text profile__about\">\r\n\t\t\t\tFemale, 24 years, Minsk, Belarus\r\n\t\t\t</div>\r\n\t\t\t<div class=\"card__text profile__about\">\r\n\t\t\t\tLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\r\n\t\t\t</div>\r\n\t\t\t<div class=\"card__text profile__about\">\r\n\t\t\t\t<a class=\"card__link\" href=\"#\">Facebook</a> | <a class=\"card__link\" href=\"#\">VK </a>| <a class=\"card__link\" href=\"#\">Instagram</a>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"card\">\r\n\t\t\t<div class=\"title card__title\">Albums</div>\r\n\t\t\t<div class=\"card__text\">\r\n\t\t\t\t<ul class=\"album-list\">\r\n\t\t\t\t\t<li class=\"album-list__item\" *ngFor=\"let album of albums\">{{album}}</li>\r\n\t\t\t\t</ul>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\t<div class=\"col-lg-9\">\r\n\t\t<div class=\"photo-grid profile__grid\">\r\n\t\t\t<div class=\"photo-grid__wrapper\" *ngFor=\"let image of images\">\r\n\t\t\t\t<img class=\"photo-grid__image\" src=\"{{image}}\" />\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>";
-
-/***/ }),
+/* 196 */,
 /* 197 */
 /***/ (function(module, exports) {
 
-module.exports = ".profile {\n  padding-top: 20px; }\n  .profile__about {\n    margin-top: 20px; }\n  .profile__grid {\n    column-count: 3; }\n"
+module.exports = "<div class=\"row profile\">\r\n\t<div class=\"col-lg-3\">\r\n\t\t<div class=\"card\">\r\n\t\t\t<div class=\"title\">User | {{userPage?.user.username}}</div>\r\n\t\t\t<div class=\"card__text profile__about\">\r\n\t\t\t\t{{userPage?.user.email}}\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"card\">\r\n\t\t\t<div class=\"title\">Wish List</div>\r\n\t\t\t<div class=\"card__text\">\r\n\t\t\t\t<ul class=\"wish-list\">\r\n\t\t\t\t    <li class=\"wish-list__item\" *ngFor=\"let wishEvent of userPage?.wishEvents\">\r\n\t\t\t\t        <p class=\"wish-list__title\">\r\n\t\t\t\t            {{wishEvent.name}}\r\n\t\t\t\t        </p>\r\n                         {{wishEvent.dateTime | date}}\r\n\t\t\t\t    </li>\r\n\t\t\t\t</ul>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n    <div class=\"col-lg-9\">\r\n        <div class=\"card\">\r\n            <div class=\"title\">Orders Info</div>\r\n            <div class=\"card__text\">\r\n                waiting for payment | paid | canceled\r\n                <div class=\"orders\">\r\n                    <div *ngFor=\"let order of userPage?.orders\">\r\n                        <div class=\"orders__item\">\r\n                            <div class=\"orders__title\">#{{order.id}} Tickets</div>\r\n                            <button>Pay</button><button>Cancel</button>\r\n                            <table class=\"table table-striped\">\r\n                                <thead>\r\n                                <tr>\r\n                                    <th>#</th>\r\n                                    <th>Event</th>\r\n                                    <th>Date</th>\r\n                                    <th>Place</th>\r\n                                    <th>Price</th>\r\n                                </tr>\r\n                                </thead>\r\n                                <tbody>\r\n                                <tr *ngFor=\"let ticket of order.tickets; let i = index\">\r\n                                    <td>{{i+1}}</td>\r\n                                    <td>{{ticket.event.name}}</td>\r\n                                    <td>{{ticket.event.dateTime | date}}</td>\r\n       \r\n                                    <td>Place, Address, {{ticket.sector.title}}, Seating</td>\r\n                                    \r\n                                    <td>{{ticket.price}}</td>\r\n                                </tr>\r\n                                </tbody>\r\n                            </table>\r\n                            \r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+
+/***/ }),
+/* 198 */
+/***/ (function(module, exports) {
+
+module.exports = ".profile {\n  padding-top: 20px; }\n  .profile__title {\n    margin-bottom: 0; }\n  .profile__grid {\n    column-count: 3; }\n"
+
+/***/ }),
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(3);
+var http_1 = __webpack_require__(55);
+var UserService = (function () {
+    function UserService(http) {
+        this.http = http;
+        this.tokenKey = "token";
+    }
+    UserService.prototype.getUserProfile = function () {
+        return this.http.get("api/Profile");
+    };
+    UserService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], UserService);
+    return UserService;
+}());
+exports.UserService = UserService;
+
 
 /***/ })
 /******/ ]);

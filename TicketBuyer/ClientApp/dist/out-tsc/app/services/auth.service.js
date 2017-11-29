@@ -16,6 +16,9 @@ var AuthService = (function () {
         this.http = http;
         this.tokenKey = "token";
     }
+    AuthService.prototype.getCurrentUser = function () {
+        return this.http.get("api/Auth").toPromise();
+    };
     AuthService.prototype.login = function (email, password) {
         return this.http.post("api/Auth/Login", { Email: email, Password: password }).toPromise()
             .then(function (response) {

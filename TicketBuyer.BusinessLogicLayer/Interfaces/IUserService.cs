@@ -1,14 +1,17 @@
 ﻿using System.Collections.Generic;
 using TicketBuyer.BusinessLogicLayer.DTO;
+using TicketBuyer.DataAccessLayer.Entities;
 
 namespace TicketBuyer.BusinessLogicLayer.Interfaces
 {
     public interface IUserService
     {
-        UserLiteDTO GetUserLite(string email, string password);
+        bool IsUserExist(string username, string email);
 
-        UserDTO GetUser(int userId);
+        void RegisterUser(string username, string email, string password);
 
-        void AddUser(UserLiteDTO user);
+        User GetUserForLogin(string email, string password);
+
+        User GetUser(string username);
     }
 }

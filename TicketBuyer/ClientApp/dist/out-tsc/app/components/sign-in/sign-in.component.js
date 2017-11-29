@@ -30,7 +30,7 @@ var SignInComponent = (function () {
                 _this.router.navigate(["/main"]);
             }
             else {
-                alert(result.message);
+                _this.errorMessage = result.message;
             }
         });
     };
