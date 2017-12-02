@@ -11,18 +11,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var user_service_1 = require("../../services/user.service");
+var OrderStatus_1 = require("../../enums/OrderStatus");
 var ProfileComponent = (function () {
     function ProfileComponent(userService) {
         this.userService = userService;
+        this.statuses = Object.keys(OrderStatus_1.OrderStatus).map(function (k) { return OrderStatus_1.OrderStatus[k]; });
     }
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.userService.getUserProfile().subscribe(function (response) {
-            var result = response.json();
+        var i = OrderStatus_1.OrderStatus['Wait for payment'];
+        this.userService.getUserProfile().then(function (response) {
+            var result = response;
             if (result.state == 1) {
                 _this.userPage = result.data;
             }
         });
+    };
+    ProfileComponent.prototype.onPaid = function (orderId) {
+        this.userPage.orders.find(function (x) { return x.id == orderId; }).status = 2;
+    };
+    ProfileComponent.prototype.onCancel = function (orderId) {
+        this.userPage.orders.find(function (x) { return x.id == orderId; }).status = 3;
+    };
+    ProfileComponent.prototype.onWishRemoved = function (wishEventId) {
+        this.userPage.wishEvents = this.userPage.wishEvents.filter(function (x) { return x.id !== wishEventId; });
     };
     return ProfileComponent;
 }());

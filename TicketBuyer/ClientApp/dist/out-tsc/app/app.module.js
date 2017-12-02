@@ -13,12 +13,16 @@ var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
 var auth_service_1 = require("./services/auth.service");
 var user_service_1 = require("./services/user.service");
+var order_service_1 = require("./services/order.service");
 var app_component_1 = require("./components/app/app.component");
 var top_navigation_component_1 = require("./components/top-navigation/top-navigation.component");
 var main_component_1 = require("./components/main/main.component");
 var sign_in_component_1 = require("./components/sign-in/sign-in.component");
 var sign_up_component_1 = require("./components/sign-up/sign-up.component");
 var profile_component_1 = require("./components/profile/profile.component");
+var wish_events_component_1 = require("./components/wish-events/wish-events.component");
+var orders_component_1 = require("./components/orders/orders.component");
+var StatusFilter_1 = require("./filters/StatusFilter");
 var appRoutes = [
     { path: '', redirectTo: 'main', pathMatch: 'full' },
     { path: 'main', component: main_component_1.MainComponent },
@@ -39,7 +43,10 @@ AppModule = __decorate([
             main_component_1.MainComponent,
             sign_in_component_1.SignInComponent,
             sign_up_component_1.SignUpComponent,
-            profile_component_1.ProfileComponent
+            profile_component_1.ProfileComponent,
+            wish_events_component_1.WishEventsComponent,
+            orders_component_1.OrdersComponent,
+            StatusFilter_1.StatusFilter
         ],
         imports: [
             router_1.RouterModule.forRoot(appRoutes, { enableTracing: true }),
@@ -48,7 +55,7 @@ AppModule = __decorate([
             forms_1.ReactiveFormsModule,
             forms_1.FormsModule
         ],
-        providers: [auth_service_1.AuthService, user_service_1.UserService],
+        providers: [auth_service_1.AuthService, user_service_1.UserService, order_service_1.OrderService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

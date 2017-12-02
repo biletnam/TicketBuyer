@@ -11,34 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-var UserService = (function () {
-    function UserService(http) {
+var WishEventService = (function () {
+    function WishEventService(http) {
         this.http = http;
-        this.tokenKey = "token";
     }
-    UserService.prototype.getUserProfile = function () {
-        return this.http.get("api/Profile").toPromise().then(function (response) {
-            var result = response.json();
-            if (result.state == 0) {
-            }
-            return result;
-        });
+    WishEventService.prototype.remove = function (wishEventId) {
+        //return this.http.delete('api/WishEvent/Remove', optio)
     };
-    UserService.prototype.removeWish = function (wishEventId) {
-        var requestParams = new http_1.URLSearchParams();
-        requestParams.append('wishEventId', wishEventId);
-        return this.http.delete("api/Profile/RemoveWish", { params: requestParams }).toPromise().then(function (response) {
-            var result = response.json();
-            if (result.state == 0) {
-            }
-            return result;
-        });
-    };
-    return UserService;
+    return WishEventService;
 }());
-UserService = __decorate([
+WishEventService = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [http_1.Http])
-], UserService);
-exports.UserService = UserService;
-//# sourceMappingURL=user.service.js.map
+], WishEventService);
+exports.WishEventService = WishEventService;
+//# sourceMappingURL=wish-event.service.js.map

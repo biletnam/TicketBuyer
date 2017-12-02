@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, URLSearchParams  } from '@angular/http';
 import { RequestResult } from '../models/RequestResult';
 
 @Injectable()
@@ -12,6 +12,27 @@ export class UserService {
     ) { }
 
     getUserProfile() {
-        return this.http.get("api/Profile");
+        return this.http.get("api/Profile").toPromise().then(response => {
+            let result = response.json() as RequestResult;
+            if (result.state == 0) {
+                
+            }
+
+            return result;
+        });
+    }
+
+    removeWish(wishEventId) {
+        let requestParams = new URLSearchParams();
+        requestParams.append('wishEventId', wishEventId);
+
+        return this.http.delete("api/Profile/RemoveWish", { params: requestParams }).toPromise().then(response => {
+            let result = response.json() as RequestResult;
+            if (result.state == 0) {
+                
+            }
+
+            return result;
+        });
     }
 }

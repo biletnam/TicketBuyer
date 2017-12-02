@@ -1,0 +1,44 @@
+<div class="card">
+    <div class="title">Orders Info</div>
+    <div class="card__text">
+        <!--<div *ngFor="let status of statuses">
+            {{status}}
+        </div>-->
+        <p *ngIf="orders?.length == 0">None</p>
+        <div class="orders">
+            <div *ngFor="let order of orders">
+                <div class="orders__item">
+                    <div class="orders__title">
+                        #{{order.id}} 12.09.2017 {{order.status}}
+                        <div class="orders__buttons">
+                            <button class="button button--small" (click)="pay(order.id)" *ngIf="order.status == 1">Pay</button>
+                            <button class="button button--small" (click)="cancel(order.id)" *ngIf="order.status != 3">Cancel</button>
+                        </div>
+                    </div>
+                    <table class="table table-striped" *ngIf="order.tickets?.length > 0">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Event</th>
+                            <th>Date</th>
+                            <th>Place</th>
+                            <th>Price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let ticket of order.tickets; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{ticket.event.name}}</td>
+                            <td>{{ticket.event.dateTime | date}}</td>
+
+                            <td>Place, Address, {{ticket.sector.title}}, Seating</td>
+
+                            <td>{{ticket.price}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

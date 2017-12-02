@@ -1,0 +1,15 @@
+<div class="card">
+    <div class="title">Wish Events</div>
+    <div class="card__text">
+        <p *ngIf="wishEvents?.length == 0">None</p>
+        <ul class="wish-events">
+            <li class="wish-events__item" *ngFor="let wishEvent of wishEvents">
+                <p class="wish-events__title">
+                    {{wishEvent.name}}
+                </p>
+                {{wishEvent.dateTime | date}}
+                <button (click)="remove(wishEvent.id)">Remove</button>
+            </li>
+        </ul>
+    </div>
+</div>

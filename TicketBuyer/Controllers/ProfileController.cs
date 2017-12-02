@@ -60,5 +60,11 @@ namespace TicketBuyer.Controllers
 
             return CreateSuccessRequestResult(data: userPageViewModel);
         }
+
+        [HttpDelete("RemoveWish")]
+        public IActionResult RemoveWish(int wishEventId)
+        {
+            return CreateSuccessRequestResult();
+        }
     }
 }

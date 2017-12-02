@@ -11,34 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-var UserService = (function () {
-    function UserService(http) {
+var OrderService = (function () {
+    function OrderService(http) {
         this.http = http;
-        this.tokenKey = "token";
     }
-    UserService.prototype.getUserProfile = function () {
-        return this.http.get("api/Profile").toPromise().then(function (response) {
-            var result = response.json();
-            if (result.state == 0) {
-            }
-            return result;
-        });
+    OrderService.prototype.pay = function (orderId) {
+        return this.http.post('api/Order');
     };
-    UserService.prototype.removeWish = function (wishEventId) {
-        var requestParams = new http_1.URLSearchParams();
-        requestParams.append('wishEventId', wishEventId);
-        return this.http.delete("api/Profile/RemoveWish", { params: requestParams }).toPromise().then(function (response) {
-            var result = response.json();
-            if (result.state == 0) {
-            }
-            return result;
-        });
-    };
-    return UserService;
+    return OrderService;
 }());
-UserService = __decorate([
+OrderService = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [http_1.Http])
-], UserService);
-exports.UserService = UserService;
-//# sourceMappingURL=user.service.js.map
+], OrderService);
+exports.OrderService = OrderService;
+//# sourceMappingURL=orders.service.js.map

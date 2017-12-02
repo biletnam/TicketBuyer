@@ -1,62 +1,22 @@
 <div class="row profile">
-	<div class="col-lg-3">
-		<div class="card">
-			<div class="title">User | {{userPage?.user.username}}</div>
-			<div class="card__text profile__about">
-				{{userPage?.user.email}}
-			</div>
-		</div>
-		<div class="card">
-			<div class="title">Wish List</div>
-			<div class="card__text">
-				<ul class="wish-list">
-				    <li class="wish-list__item" *ngFor="let wishEvent of userPage?.wishEvents">
-				        <p class="wish-list__title">
-				            {{wishEvent.name}}
-				        </p>
-                         {{wishEvent.dateTime | date}}
-				    </li>
-				</ul>
-			</div>
-		</div>
-	</div>
-    <div class="col-lg-9">
-        <div class="card">
-            <div class="title">Orders Info</div>
-            <div class="card__text">
-                waiting for payment | paid | canceled
-                <div class="orders">
-                    <div *ngFor="let order of userPage?.orders">
-                        <div class="orders__item">
-                            <div class="orders__title">#{{order.id}} Tickets</div>
-                            <button>Pay</button><button>Cancel</button>
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Event</th>
-                                    <th>Date</th>
-                                    <th>Place</th>
-                                    <th>Price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr *ngFor="let ticket of order.tickets; let i = index">
-                                    <td>{{i+1}}</td>
-                                    <td>{{ticket.event.name}}</td>
-                                    <td>{{ticket.event.dateTime | date}}</td>
-       
-                                    <td>Place, Address, {{ticket.sector.title}}, Seating</td>
-                                    
-                                    <td>{{ticket.price}}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            
-                        </div>
+    <div class="col-lg-3 col-md-12">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="title">User | {{userPage?.user.username}}</div>
+                    <div class="card__text profile__about">
+                        {{userPage?.user.email}}
                     </div>
                 </div>
             </div>
+            <div class="col-lg-12 col-md-4">
+                <wish-events [wishEvents]="userPage?.wishEvents" (onWishRemoved)="onWishRemoved($event)"></wish-events>
+            </div>
+            
         </div>
+        
+    </div>
+    <div class="col-lg-9 col-md-12">
+        <orders [orders]="userPage?.orders" (onPaid)="onPaid($event)" (onCancel)="onCancel($event)"></orders>
     </div>
 </div>
