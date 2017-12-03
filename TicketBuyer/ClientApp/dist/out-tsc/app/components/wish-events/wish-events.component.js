@@ -14,13 +14,13 @@ var user_service_1 = require("../../services/user.service");
 var WishEventsComponent = (function () {
     function WishEventsComponent(userService) {
         this.userService = userService;
-        this.onRemoved = new core_1.EventEmitter();
+        this.onWishRemoved = new core_1.EventEmitter();
     }
     WishEventsComponent.prototype.remove = function (wishEventId) {
         var _this = this;
         this.userService.removeWish(wishEventId).then(function (result) {
             if (result.state == 1) {
-                _this.onRemoved.emit(wishEventId);
+                _this.onWishRemoved.emit(wishEventId);
             }
             ;
         });
@@ -34,7 +34,7 @@ __decorate([
 __decorate([
     core_1.Output(),
     __metadata("design:type", Object)
-], WishEventsComponent.prototype, "onRemoved", void 0);
+], WishEventsComponent.prototype, "onWishRemoved", void 0);
 WishEventsComponent = __decorate([
     core_1.Component({
         selector: 'wish-events',

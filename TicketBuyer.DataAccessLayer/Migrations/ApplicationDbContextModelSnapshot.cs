@@ -34,6 +34,8 @@ namespace TicketBuyer.DataAccessLayer.Migrations
 
                     b.Property<int>("PlaceId");
 
+                    b.Property<int>("Status");
+
                     b.Property<int>("Type");
 
                     b.HasKey("Id");

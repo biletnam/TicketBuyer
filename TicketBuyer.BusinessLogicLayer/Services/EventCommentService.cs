@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TicketBuyer.BusinessLogicLayer.DTO;
 using TicketBuyer.BusinessLogicLayer.Interfaces;
 using TicketBuyer.DataAccessLayer.Entities;
 using TicketBuyer.DataAccessLayer.Interfaces;
@@ -17,36 +16,22 @@ namespace TicketBuyer.BusinessLogicLayer.Services
             _unitOfWork = unitOfWork;
         }
 
-        public IList<EventCommentDTO> GetComments(int eventId)
+        public IList<EventComment> GetComments(int eventId)
         {
-            return _unitOfWork.EventCommentRepository.Find(x => x.EventId == eventId).Select(x => new EventCommentDTO
-            {
-                Id = x.Id,
-                User = new UserLiteDTO {Id = x.User.Id, Username = x.User.Username},
-                Comment = x.Comment,
-                DateTime = x.DateTime
-            }).ToList();
+            return _unitOfWork.EventCommentRepository.Find(x => x.EventId == eventId).ToList();
         }
 
-        public void AddComment(EventCommentDTO eventCommentDto)
+        public void AddComment(EventComment eventComment)
         {
-            if (!_unitOfWork.EventRepository.Find(x => x.Id == eventCommentDto.EventId).Any())
+            if (!_unitOfWork.EventRepository.Find(x => x.Id == eventComment.EventId).Any())
             {
                 throw new Exception();
             }
 
-            if (!_unitOfWork.UserRepository.Find(x => x.Id == eventCommentDto.UserId).Any())
+            if (!_unitOfWork.UserRepository.Find(x => x.Id == eventComment.UserId).Any())
             {
                 throw new Exception();
             }
-
-            var eventComment = new EventComment
-            {
-                UserId = eventCommentDto.UserId,
-                EventId = eventCommentDto.EventId,
-                DateTime = DateTime.Now,
-                Comment = eventCommentDto.Comment
-            };
 
             _unitOfWork.EventCommentRepository.Add(eventComment);
             _unitOfWork.SaveChanges();

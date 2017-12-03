@@ -1,26 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using TicketBuyer.BusinessLogicLayer.DTO;
+using TicketBuyer.DataAccessLayer.Entities;
 using TicketBuyer.DataAccessLayer.Enums;
 
 namespace TicketBuyer.BusinessLogicLayer.Interfaces
 {
     public interface IEventService
     {
-        EventDTO GetEvent(int id);
+        Event GetEvent(int id);
 
-        IList<EventLiteDTO> GetEvents();
+        IList<Event> GetEvents(EventType? type, EventStatus? status, DateTime? startDate, DateTime? endDate, int? placeId);
 
-        IList<EventLiteDTO> GetEventsByType(EventType type);
+        void AddEvent(Event eventEntity);
 
-        IList<EventLiteDTO> GetEventsByDateTimeRange(DateTime start, DateTime end);
+        void UpdateEvent(Event eventEntity);
 
-        IList<EventLiteDTO> GetEventsByPlace(int placeId);
-
-        void AddEvent(EventDTO eventViewModel);
-
-        void UpdateEvent(EventDTO eventViewModel);
-
-        void RemoveEvent(EventDTO eventViewModel);
+        void RemoveEvent(int eventId);
     }
 }

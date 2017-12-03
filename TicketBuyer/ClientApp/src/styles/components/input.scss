@@ -1,4 +1,4 @@
-﻿.input {
+.input {
     height: 50px;
     padding: 6px 12px;
     background: none;
@@ -11,4 +11,8 @@
         border: solid 1px $color-active;
         transition: ease all 0.4s;
     }
+}
+
+.textarea {
+    height: 100px;
 }

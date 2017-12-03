@@ -5,6 +5,14 @@
     color: black;
 }
 
+.subtitle {
+    font-family: $font-title-family;
+    font-size: 20px;
+    font-weight: $font-title-weight;
+    color: black;
+    line-height: 2;
+}
+
 .error {
     color: darkred;
 }

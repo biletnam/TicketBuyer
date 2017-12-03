@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TicketBuyer.BusinessLogicLayer.DTO;
 using TicketBuyer.BusinessLogicLayer.Interfaces;
 using TicketBuyer.DataAccessLayer.Entities;
 using TicketBuyer.DataAccessLayer.Enums;
@@ -22,94 +21,85 @@ namespace TicketBuyer.BusinessLogicLayer.Services
             _placeService = placeService;
         }
 
-        public EventDTO GetEvent(int id)
+        public Event GetEvent(int id)
         {
             var eventEntity = GetExistingEvent(id);
 
-            var comments = _eventCommentService.GetComments(id);
-            var place = _placeService.GetPlaceLite(eventEntity.PlaceId);
+            eventEntity.EventComments = _eventCommentService.GetComments(id);
+            eventEntity.Place = _placeService.GetPlaceLite(eventEntity.PlaceId);
 
-            return new EventDTO
+            return eventEntity;
+        }
+
+        public IList<Event> GetEvents(EventType? type, EventStatus? status, DateTime? startDate, DateTime? endDate, int? placeId)
+        {
+            var data = _unitOfWork.EventRepository.GetAll();
+
+            if (type.HasValue)
             {
-                Id = eventEntity.Id,
-                Name = eventEntity.Name,
-                Information = eventEntity.Information,
-                DateTime = eventEntity.DateTime,
-                Type = eventEntity.Type,
-                Place = place,
-                EventComments = comments
-            };
+                data = data.Where(x => x.Type == type);
+            }
+
+            if (status.HasValue)
+            {
+                data = data.Where(x => x.Status == status);
+            }
+
+            if (startDate.HasValue)
+            {
+                data = data.Where(x => x.DateTime >= startDate);
+            }
+
+            if (endDate.HasValue)
+            {
+                data = data.Where(x => x.DateTime <= endDate);
+            }
+
+            if (placeId.HasValue)
+            {
+                data = data.Where(x => x.PlaceId == placeId);
+            }
+
+            data.ToList().ForEach(x =>
+            {
+                x.Place = _placeService.GetPlaceLite(x.PlaceId);
+            });
+
+            return data.ToList();
         }
-
-        public IList<EventLiteDTO> GetEvents()
-        {
-            var events = _unitOfWork.EventRepository.GetAll();
-
-            return Map(events);
-        }
-
-        public IList<EventLiteDTO> GetEventsByType(EventType type)
-        {
-            var events = _unitOfWork.EventRepository.Find(x => x.Type == type);
-
-            return Map(events);
-        }
-
-        public IList<EventLiteDTO> GetEventsByDateTimeRange(DateTime start, DateTime end)
-        {
-            var events = _unitOfWork.EventRepository.Find(x => x.DateTime >= start && x.DateTime <= end);
-
-            return Map(events);
-        }
-
-        public IList<EventLiteDTO> GetEventsByPlace(int placeId)
-        {
-            var events = _unitOfWork.EventRepository.Find(x => x.PlaceId == placeId);
-
-            return Map(events);
-        }
-
-        public void AddEvent(EventDTO EventDTO)
+        
+        public void AddEvent(Event eventEntity)
         {
             var alreadyAdded = _unitOfWork.EventRepository.Find(x =>
-                x.Name == EventDTO.Name && x.DateTime == EventDTO.DateTime &&
-                x.Type == EventDTO.Type).FirstOrDefault();
+                x.Name == eventEntity.Name && x.DateTime == eventEntity.DateTime &&
+                x.Type == eventEntity.Type).FirstOrDefault();
 
             if (alreadyAdded != null)
             {
                 throw new Exception();
             }
 
-            var eventEntity = new Event
-            {
-                Name = EventDTO.Information,
-                Information = EventDTO.Information,
-                DateTime = EventDTO.DateTime,
-                Type = EventDTO.Type,
-                PlaceId = EventDTO.PlaceId
-            };
-
             _unitOfWork.EventRepository.Add(eventEntity);
             _unitOfWork.SaveChanges();
         }
 
-        public void UpdateEvent(EventDTO EventDTO)
+        public void UpdateEvent(Event eventEnity)
         {
-            var eventEntity = GetExistingEvent(EventDTO.Id);
+            var existingEvent = GetExistingEvent(eventEnity.Id);
 
-            eventEntity.Name = EventDTO.Information;
-            eventEntity.Information = EventDTO.Information;
-            eventEntity.DateTime = EventDTO.DateTime;
-            eventEntity.Type = EventDTO.Type;
-            eventEntity.PlaceId = EventDTO.PlaceId;
+            existingEvent.Name = eventEnity.Information;
+            existingEvent.Information = eventEnity.Information;
+            existingEvent.DateTime = eventEnity.DateTime;
+            existingEvent.Type = eventEnity.Type;
+            existingEvent.PlaceId = eventEnity.PlaceId;
 
-            _unitOfWork.EventRepository.Update(eventEntity);
+            _unitOfWork.EventRepository.Update(existingEvent);
             _unitOfWork.SaveChanges();
         }
 
-        public void RemoveEvent(EventDTO EventDTO)
+        public void RemoveEvent(int eventId)
         {
-            var eventEntity = _unitOfWork.EventRepository.Find(x => x.Id == EventDTO.Id).FirstOrDefault();
+            var eventEntity = _unitOfWork.EventRepository.Find(x => x.Id == eventId).FirstOrDefault();
 
             if (eventEntity == null)
             {
@@ -130,17 +120,6 @@ namespace TicketBuyer.BusinessLogicLayer.Services
             }
 
             return eventEntity;
-        }
-
-        private IList<EventLiteDTO> Map(IEnumerable<Event> events)
-        {
-            return events.Select(x => new EventLiteDTO
-            {
-                Id = x.Id,
-                Name = x.Name,
-                DateTime = x.DateTime,
-                Type = x.Type
-            }).ToList();
         }
     }
 }

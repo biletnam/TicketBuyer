@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TicketBuyer.DataAccessLayer.Enums;
 
 namespace TicketBuyer.ViewModels
@@ -12,5 +12,11 @@ namespace TicketBuyer.ViewModels
         public DateTime DateTime { get; set; }
 
         public EventType Type { get; set; }
+
+        public EventStatus Status { get; set; }
+
+        public int PlaceId { get; set; }
+
+        public PlaceLiteViewModel Place { get; set; }
     }
 }

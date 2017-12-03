@@ -11,82 +11,56 @@ namespace TicketBuyer.BusinessLogicLayer.Services
     public class PlaceService : IPlaceService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IEventService _eventService;
 
-        public PlaceService(IUnitOfWork unitOfWork, IEventService eventService)
+        public PlaceService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _eventService = eventService;
         }
 
-        public PlaceDTO GetPlace(int placeId)
+        public Place GetPlace(int placeId)
         {
             var place = GetExistingPlace(placeId);
 
-            var events = _eventService.GetEventsByPlace(placeId);
+            place.Events = _unitOfWork.EventRepository.Find(x => x.PlaceId == placeId).ToList();
 
-            return new PlaceDTO
-            {
-                Id = place.Id,
-                Name = place.Name,
-                Address = place.Address,
-                Information = place.Information,
-                Events = events
-            };
+            return place;
         }
 
-        public PlaceLiteDTO GetPlaceLite(int placeId)
+        public Place GetPlaceLite(int placeId)
         {
-            var place = GetExistingPlace(placeId);
-
-            return new PlaceLiteDTO
-            {
-                Id = place.Id,
-                Name = place.Name,
-                Address = place.Address,
-            };
+            return GetExistingPlace(placeId);
         }
 
-        public IList<PlaceLiteDTO> GetPlaces()
+        public IList<Place> GetPlaces()
         {
-            var places = _unitOfWork.PlaceRepository.GetAll();
-
-            return Map(places);
+            return _unitOfWork.PlaceRepository.GetAll().ToList();
         }
 
-        public void AddPlace(PlaceDTO placeDTO)
+        public void AddPlace(Place place)
         {
             if (_unitOfWork.PlaceRepository
-                .Find(x => x.Name == placeDTO.Name && x.Address == placeDTO.Address).Any())
+                .Find(x => x.Name == place.Name && x.Address == place.Address).Any())
             {
                 throw new Exception();
             }
 
-            if (placeDTO.Sectors.Count > 0)
+            if (place.Sectors.Count > 0)
             {
 
             }
-
-            var place = new Place
-            {
-                Name = placeDTO.Name,
-                Address = placeDTO.Address,
-                Information = placeDTO.Information,
-                //Sectors = PlaceDTO.Sectors.Select(x => )
-            };
 
             _unitOfWork.PlaceRepository.Add(place);
             _unitOfWork.SaveChanges();
 
         }
 
-        public void UpdatePlace(PlaceDTO placeDTO)
+        public void UpdatePlace(Place place)
         {
-            var place = GetExistingPlace(placeDTO.Id);
+            var existingPlace = GetExistingPlace(place.Id);
 
-            place.Address = placeDTO.Address;
-            place.Information = placeDTO.Information;
-            placeDTO.Name = placeDTO.Name;
+            existingPlace.Address = place.Address;
+            existingPlace.Information = place.Information;
+            existingPlace.Name = place.Name;
 
             _unitOfWork.PlaceRepository.Update(place);
             _unitOfWork.SaveChanges();
@@ -97,9 +71,9 @@ namespace TicketBuyer.BusinessLogicLayer.Services
             throw new NotImplementedException();
         }
 
-        public void RemovePlace(PlaceDTO placeDTO)
+        public void RemovePlace(int placeId)
         {
-            var place = GetExistingPlace(placeDTO.Id);
+            var place = GetExistingPlace(placeId);
 
             _unitOfWork.PlaceRepository.Remove(place);
             _unitOfWork.SaveChanges();
@@ -115,16 +89,6 @@ namespace TicketBuyer.BusinessLogicLayer.Services
             }
 
             return place;
-        }
-
-        private IList<PlaceLiteDTO> Map(IEnumerable<Place> places)
-        {
-            return places.Select(x => new PlaceLiteDTO
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Address = x.Address
-            }).ToList();
         }
     }
 }

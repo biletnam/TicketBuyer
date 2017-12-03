@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using TicketBuyer.BusinessLogicLayer.DTO;
+using TicketBuyer.DataAccessLayer.Entities;
 
 namespace TicketBuyer.BusinessLogicLayer.Interfaces
 {
     public interface IEventCommentService
     {
-        IList<EventCommentDTO> GetComments(int eventId);
+        IList<EventComment> GetComments(int eventId);
 
-        void AddComment(EventCommentDTO eventCommentDto);
+        void AddComment(EventComment eventComment);
     }
 }

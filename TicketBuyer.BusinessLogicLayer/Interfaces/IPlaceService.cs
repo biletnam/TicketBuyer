@@ -1,22 +1,23 @@
 ﻿using System.Collections.Generic;
 using TicketBuyer.BusinessLogicLayer.DTO;
+using TicketBuyer.DataAccessLayer.Entities;
 
 namespace TicketBuyer.BusinessLogicLayer.Interfaces
 {
     public interface IPlaceService
     {
-        PlaceDTO GetPlace(int placeId);
+        Place GetPlace(int placeId);
 
-        DTO.PlaceLiteDTO GetPlaceLite(int placeId);
+        Place GetPlaceLite(int placeId);
 
-        IList<PlaceLiteDTO> GetPlaces();
+        IList<Place> GetPlaces();
 
-        void AddPlace(PlaceDTO placeViewModel);
+        void AddPlace(Place place);
 
-        void UpdatePlace(PlaceDTO placeViewModel);
+        void UpdatePlace(Place place);
 
         void UpdateSectors(int placeId, IList<SectorDTO> sectors);
 
-        void RemovePlace(PlaceDTO placeViewModel);
+        void RemovePlace(int placeId);
     }
 }

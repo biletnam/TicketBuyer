@@ -6,9 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\components\add-event\add-event.component.ts" />
+    <None Remove="ClientApp\src\app\components\event-comments\event-comments.component.ts" />
+    <None Remove="ClientApp\src\app\components\events\events.component.ts" />
     <None Remove="ClientApp\src\app\components\orders\orders.component.ts" />
+    <None Remove="ClientApp\src\app\components\view-event\view-event.component.ts" />
     <None Remove="ClientApp\src\app\enums\OrderStatus.ts" />
+    <None Remove="ClientApp\src\app\filters\TypesPipe.ts" />
+    <None Remove="ClientApp\src\app\models\AddEventPage.ts" />
     <None Remove="ClientApp\src\app\models\Event.ts" />
+    <None Remove="ClientApp\src\app\models\EventComment.ts" />
+    <None Remove="ClientApp\src\app\models\EventFilter.ts" />
+    <None Remove="ClientApp\src\app\models\EventFiltersData.ts" />
     <None Remove="ClientApp\src\app\models\Order.ts" />
     <None Remove="ClientApp\src\app\models\Place.ts" />
     <None Remove="ClientApp\src\app\models\RequestResult.ts" />
@@ -17,6 +26,7 @@
     <None Remove="ClientApp\src\app\models\User.ts" />
     <None Remove="ClientApp\src\app\models\UserPage.ts" />
     <None Remove="ClientApp\src\app\services\auth.service.ts" />
+    <None Remove="ClientApp\src\app\services\event.service.ts" />
     <None Remove="ClientApp\src\vendor.ts" />
   </ItemGroup>
 
@@ -37,11 +47,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\components\add-event\add-event.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\event-comments\event-comments.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\events\events.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\components\orders\orders.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\view-event\view-event.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\components\wish-events\wish-events.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\enums\OrderStatus.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\filters\StatusFilter.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\filters\TypesPipe.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\AddEventPage.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Event.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\EventComment.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\EventFilter.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\EventFiltersData.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Order.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Place.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\RequestResult.ts" />
@@ -50,6 +69,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\models\User.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\UserPage.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\auth.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\event.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\order.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\user.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\vendor.ts" />

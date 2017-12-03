@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-lg-3 col-lg-offset-2">
+        <div class="card">
+            <div class="title card__title">Add Event</div>
+            <div class="card__text">
+                Add a new event by filling all necessary fields
+            </div>
+            <div class="card__text error" *ngIf="errorMessage">
+                {{errorMessage}}
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-5">
+        <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form__input input" id="title" formControlName="title" [formGroup]="form"/>
+            </div>
+            <div class="form-group">
+                <label for="information">Information</label>
+                <input type="text" class="form__input input" id="information" formControlName="information" [formGroup]="form"/>
+            </div>
+            <div class="form-group">
+                <label for="datetime">Date and time</label>
+                <input type="datetime-local" class="form__input input" id="datetime" formControlName="datetime" [formGroup]="form" />
+            </div>
+            <div class="form-group">
+                <label for="datetime">Event Type</label>
+                <select class="form__input input" id="type" formControlName="type" [formGroup]="form">
+                    <option *ngFor="let type of addEventPage?.types | types" [value]="type.key">{{type.value}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="datetime">Place</label>
+                <select class="form__input input" id="placeId" formControlName="placeId" [formGroup]="form">
+                    <option *ngFor="let place of addEventPage?.places" [value]="place.id">{{place.name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="form__button button" [disabled]="!form.valid">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

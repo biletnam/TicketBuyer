@@ -23,7 +23,7 @@ namespace TicketBuyer.DataAccessLayer.Repositories
 
         public IEnumerable<EventComment> Find(Func<EventComment, bool> condition)
         {
-            return _dbContext.EventComments.Where(condition);
+            return GetAll().AsEnumerable().Where(condition);
         }
 
         public IQueryable<EventComment> GetAll()

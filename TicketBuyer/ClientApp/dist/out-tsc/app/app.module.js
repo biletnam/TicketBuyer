@@ -14,6 +14,7 @@ var forms_1 = require("@angular/forms");
 var auth_service_1 = require("./services/auth.service");
 var user_service_1 = require("./services/user.service");
 var order_service_1 = require("./services/order.service");
+var event_service_1 = require("./services/event.service");
 var app_component_1 = require("./components/app/app.component");
 var top_navigation_component_1 = require("./components/top-navigation/top-navigation.component");
 var main_component_1 = require("./components/main/main.component");
@@ -22,13 +23,20 @@ var sign_up_component_1 = require("./components/sign-up/sign-up.component");
 var profile_component_1 = require("./components/profile/profile.component");
 var wish_events_component_1 = require("./components/wish-events/wish-events.component");
 var orders_component_1 = require("./components/orders/orders.component");
+var add_event_component_1 = require("./components/add-event/add-event.component");
+var events_component_1 = require("./components/events/events.component");
+var view_event_component_1 = require("./components/view-event/view-event.component");
+var event_comments_component_1 = require("./components/event-comments/event-comments.component");
 var StatusFilter_1 = require("./filters/StatusFilter");
+var TypesPipe_1 = require("./filters/TypesPipe");
 var appRoutes = [
     { path: '', redirectTo: 'main', pathMatch: 'full' },
-    { path: 'main', component: main_component_1.MainComponent },
+    { path: 'main', component: events_component_1.EventsComponent },
     { path: 'sign-in', component: sign_in_component_1.SignInComponent },
     { path: 'sign-up', component: sign_up_component_1.SignUpComponent },
-    { path: 'profile', component: profile_component_1.ProfileComponent }
+    { path: 'profile', component: profile_component_1.ProfileComponent },
+    { path: 'add-event', component: add_event_component_1.AddEventComponent },
+    { path: 'view-event/:id', component: view_event_component_1.ViewEventComponent }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -46,7 +54,12 @@ AppModule = __decorate([
             profile_component_1.ProfileComponent,
             wish_events_component_1.WishEventsComponent,
             orders_component_1.OrdersComponent,
-            StatusFilter_1.StatusFilter
+            add_event_component_1.AddEventComponent,
+            events_component_1.EventsComponent,
+            view_event_component_1.ViewEventComponent,
+            event_comments_component_1.EventCommentsComponent,
+            StatusFilter_1.StatusFilter,
+            TypesPipe_1.TypesPipe
         ],
         imports: [
             router_1.RouterModule.forRoot(appRoutes, { enableTracing: true }),
@@ -55,7 +68,7 @@ AppModule = __decorate([
             forms_1.ReactiveFormsModule,
             forms_1.FormsModule
         ],
-        providers: [auth_service_1.AuthService, user_service_1.UserService, order_service_1.OrderService],
+        providers: [auth_service_1.AuthService, user_service_1.UserService, order_service_1.OrderService, event_service_1.EventService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

@@ -19,6 +19,8 @@ namespace TicketBuyer.DataAccessLayer.Entities
 
         public EventType Type { get; set; }
 
+        public EventStatus Status { get; set; }
+
         public int PlaceId { get; set; }
 
         [ForeignKey("PlaceId")]
