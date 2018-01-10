@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using TicketBuyer.BusinessLogicLayer.DTO;
 using TicketBuyer.DataAccessLayer.Entities;
 
 namespace TicketBuyer.BusinessLogicLayer.Interfaces
@@ -8,6 +7,6 @@ namespace TicketBuyer.BusinessLogicLayer.Interfaces
     {
         bool IsSectorLimitReached(int sectorId, int eventId);
 
-        IList<SeatingDTO> GetSeatings(int sectorId, int eventId);
+      //  IList<SeatingDTO> GetSeatings(int sectorId, int eventId);
     }
 }

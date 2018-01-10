@@ -1,0 +1,43 @@
+@import '../../../styles/variables.scss';
+
+.events {
+
+    &__link {
+        transition: all ease 0.4s;
+
+        &:link,
+        &:visited {
+            display: block;
+            color: $color-default;
+            text-decoration: none;
+        }
+
+        &:hover {
+            color: $color-active;
+            transition: all ease 0.4s;
+        }
+    }
+
+    &__item {
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        border: #F5F5F5 solid 1px;
+        transition: all ease 0.4s;
+
+        &:hover,
+        &--active {
+            border: solid 1px $color-active;
+            transition: all ease 0.4s;
+        }
+    }
+
+    &__title {
+        font-size: 20px;
+        margin-bottom: 0;
+        line-height: 1.5;
+    }
+}
+.photo {
+    max-width: 100%;
+    margin-bottom: 10px;
+}

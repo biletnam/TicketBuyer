@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using TicketBuyer.BusinessLogicLayer.DTO;
 using TicketBuyer.DataAccessLayer.Entities;
 
 namespace TicketBuyer.BusinessLogicLayer.Interfaces

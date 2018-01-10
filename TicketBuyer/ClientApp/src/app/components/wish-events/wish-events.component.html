@@ -4,11 +4,13 @@
         <p *ngIf="wishEvents?.length == 0">None</p>
         <ul class="wish-events">
             <li class="wish-events__item" *ngFor="let wishEvent of wishEvents">
+                <img src="{{wishEvent.eventPhotos[0]}}" />
                 <p class="wish-events__title">
                     {{wishEvent.name}}
                 </p>
                 {{wishEvent.dateTime | date}}
-                <button (click)="remove(wishEvent.id)">Remove</button>
+                <br />
+                <button (click)="remove(wishEvent.id)" class="button button--small">Remove</button>
             </li>
         </ul>
     </div>

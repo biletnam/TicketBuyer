@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using TicketBuyer.DataAccessLayer.Enums;
 
 namespace TicketBuyer.DataAccessLayer.Entities
 {
@@ -17,14 +16,20 @@ namespace TicketBuyer.DataAccessLayer.Entities
 
         public DateTime DateTime { get; set; }
 
-        public EventType Type { get; set; }
-
-        public EventStatus Status { get; set; }
-
         public int PlaceId { get; set; }
+
+        public int TypeId { get; set; }
+
+        public int StatusId { get; set; }
 
         [ForeignKey("PlaceId")]
         public Place Place { get; set; }
+
+        [ForeignKey("TypeId")]
+        public EventType Type { get; set; }
+
+        [ForeignKey("StatusId")]
+        public EventStatus Status { get; set; }
 
         public ICollection<EventComment> EventComments { get; set; }
 
@@ -33,5 +38,9 @@ namespace TicketBuyer.DataAccessLayer.Entities
         public ICollection<EventPhoto> EventPhotos { get; set; }
 
         public ICollection<Ticket> Tickets { get; set; }
+
+        public ICollection<EventNews> EventNews { get; set; }
+
+        public ICollection<EventSale> EventSales { get; set; }
     }
 }

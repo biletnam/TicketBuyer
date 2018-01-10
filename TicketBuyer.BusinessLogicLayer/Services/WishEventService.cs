@@ -23,9 +23,15 @@ namespace TicketBuyer.BusinessLogicLayer.Services
 
         public IList<Event> GetWishEvents(int userId)
         {
-            var wishEvents = _unitOfWork.WishEventRepository.Find(x => x.UserId == userId);
+            var wishEvents = _unitOfWork.WishEventRepository.Find(x => x.UserId == userId).ToList();
+            var events = wishEvents.Select(x => x.Event).ToList();
 
-            return wishEvents.Select(x => x.Event).ToList();
+            events.ForEach(x =>
+            {
+                x.EventPhotos = _unitOfWork.EventPhotoRepository.Find(y => y.EventId == x.Id).ToList();
+            });
+
+            return events;
         }
 
         public void AddWishEvent(int userId, int eventId)
@@ -40,14 +46,17 @@ namespace TicketBuyer.BusinessLogicLayer.Services
                 throw new Exception();
             }
 
-            var wishEvent = new WishEvent
+            if (!_unitOfWork.WishEventRepository.Find(x => x.UserId == userId && x.EventId == eventId).Any())
             {
-                UserId = userId,
-                EventId = eventId
-            };
+                var wishEvent = new WishEvent
+                {
+                    UserId = userId,
+                    EventId = eventId
+                };
 
-            _unitOfWork.WishEventRepository.Add(wishEvent);
-            _unitOfWork.SaveChanges();
+                _unitOfWork.WishEventRepository.Add(wishEvent);
+                _unitOfWork.SaveChanges();
+            }
         }
 
         public void RemoveWishEvent(int wishEventId)

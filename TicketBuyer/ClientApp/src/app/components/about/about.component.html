@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-lg-4">
+        <div class="title">Sale Places</div>
+        <div class="events__item" *ngFor="let salePlace of about?.salePlaces">
+            <div class="events__title">
+                {{salePlace?.name}}
+            </div>
+            {{salePlace?.address}} <br />
+            {{salePlace?.phone}}
+        </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card__title title">About Us</div>
+                <div class="card__text">
+                    The international company TicketBuyer has been operating since 2015, and for the present day confidently takes the leading position in the market of ticket distribution for various events in 17 countries of the world.
+                    <br /><br />
+                    TicketBuyer International is the leading ticket sales operator currently operating in Bulgaria, Hungary, Greece, India, the USA, Canada, Malaysia, Poland, the Republic of Belarus, the Slovak Republic, Croatia, the Czech Republic.
+                    <br /><br />
+                    The main goal of TicketBuyer is to provide world-class services of the highest quality to clients in the Republic of Belarus. Using the software for selling tickets of our own design, we guarantee constant innovations and improvements, according to the world trends in this segment of the market.
+                    <br /><br />
+                    TicketBuyer uses the best software in the world to organize ticket sales using the latest technologies and has a huge experience of successful work. Therefore, the organizers of world-class events in new, unfamiliar countries (which for many of them is the Republic of Belarus), prefer cooperation with the already proven TicketBuyer company.
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="row" style="margin-top: 20px; margin-bottom: 100px; ">
+    <div class="col-lg-6">
+        <div class="title">Company News</div>
+        <div class="events__item" *ngFor="let companyNews of about?.companyNews">
+            <div class="events__title">
+                {{companyNews?.title}}
+            </div>
+            {{companyNews?.dateTime | date}} <br/>
+            {{companyNews?.article}}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="title">Event News</div>
+        <div class="events__item" *ngFor="let eventNews of about?.eventNews">
+            <div class="events__title">
+                {{eventNews?.title}}
+            </div>
+            <a class="events__link" routerLink="/view-event/{{eventNews?.eventId}}">Link</a>
+            {{eventNews?.dateTime | date}}<br/>
+            {{eventNews?.article}}
+        </div>
+    </div>
+</div>

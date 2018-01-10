@@ -15,6 +15,8 @@ var auth_service_1 = require("./services/auth.service");
 var user_service_1 = require("./services/user.service");
 var order_service_1 = require("./services/order.service");
 var event_service_1 = require("./services/event.service");
+var place_service_1 = require("./services/place.service");
+var about_service_1 = require("./services/about.service");
 var app_component_1 = require("./components/app/app.component");
 var top_navigation_component_1 = require("./components/top-navigation/top-navigation.component");
 var main_component_1 = require("./components/main/main.component");
@@ -27,6 +29,10 @@ var add_event_component_1 = require("./components/add-event/add-event.component"
 var events_component_1 = require("./components/events/events.component");
 var view_event_component_1 = require("./components/view-event/view-event.component");
 var event_comments_component_1 = require("./components/event-comments/event-comments.component");
+var places_component_1 = require("./components/places/places.component");
+var view_place_component_1 = require("./components/view-place/view-place.component");
+var add_place_component_1 = require("./components/add-place/add-place.component");
+var about_component_1 = require("./components/about/about.component");
 var StatusFilter_1 = require("./filters/StatusFilter");
 var TypesPipe_1 = require("./filters/TypesPipe");
 var appRoutes = [
@@ -36,7 +42,11 @@ var appRoutes = [
     { path: 'sign-up', component: sign_up_component_1.SignUpComponent },
     { path: 'profile', component: profile_component_1.ProfileComponent },
     { path: 'add-event', component: add_event_component_1.AddEventComponent },
-    { path: 'view-event/:id', component: view_event_component_1.ViewEventComponent }
+    { path: 'view-event/:id', component: view_event_component_1.ViewEventComponent },
+    { path: 'places', component: places_component_1.PlacesComponent },
+    { path: 'view-place/:id', component: view_place_component_1.ViewPlaceComponent },
+    { path: 'add-place', component: add_place_component_1.AddPlaceComponent },
+    { path: 'about', component: about_component_1.AboutComponent }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -58,6 +68,10 @@ AppModule = __decorate([
             events_component_1.EventsComponent,
             view_event_component_1.ViewEventComponent,
             event_comments_component_1.EventCommentsComponent,
+            places_component_1.PlacesComponent,
+            view_place_component_1.ViewPlaceComponent,
+            add_place_component_1.AddPlaceComponent,
+            about_component_1.AboutComponent,
             StatusFilter_1.StatusFilter,
             TypesPipe_1.TypesPipe
         ],
@@ -68,7 +82,7 @@ AppModule = __decorate([
             forms_1.ReactiveFormsModule,
             forms_1.FormsModule
         ],
-        providers: [auth_service_1.AuthService, user_service_1.UserService, order_service_1.OrderService, event_service_1.EventService],
+        providers: [auth_service_1.AuthService, user_service_1.UserService, order_service_1.OrderService, event_service_1.EventService, place_service_1.PlaceService, about_service_1.AboutService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

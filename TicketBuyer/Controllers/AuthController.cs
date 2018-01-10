@@ -1,4 +1,3 @@
-using System;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -13,34 +12,37 @@ namespace TicketBuyer.Controllers
     [Route("api/Auth")]
     public class AuthController : BaseController
     {
+        private readonly IAuthService _authService;
         private readonly IUserService _userService;
 
-        public AuthController(IUserService userService)
+        public AuthController(IAuthService authService, IUserService userService)
         {
+            _authService = authService;
             _userService = userService;
         }
 
         [HttpGet]
-        [Authorize]
         public IActionResult GetCurrentUserInfo()
         {
             var user = _userService.GetUser(User.Identity.Name);
 
+            if (user == null) return CreateFailedRequestResult();
+
             return CreateSuccessRequestResult(data: new UserViewModel
             {
                 Username = user.Username,
-                Email = user.Email,
-                Role = user.Role
+                //Email = user.Email,
+                Role = user.RoleId
             });
         }
 
         [HttpPost("Register")]
         public IActionResult Register([FromBody] AuthViewModel authViewModel)
         {
-            if (_userService.IsUserExist(authViewModel.Username, authViewModel.Email))
+            if (_authService.IsUserExist(authViewModel.Username, authViewModel.Email))
                 return CreateFailedRequestResult("A user with such username/email is already exist");
 
-            _userService.RegisterUser(authViewModel.Username, authViewModel.Email, authViewModel.Password);
+            _authService.RegisterUser(authViewModel.Username, authViewModel.Email, authViewModel.Password);
 
             return CreateSuccessRequestResult("User is registered and now you can sign-in");
         }
@@ -48,7 +50,7 @@ namespace TicketBuyer.Controllers
         [HttpPost("Login")]
         public IActionResult Login([FromBody] AuthViewModel authViewModel)
         {
-            var user = _userService.GetUserForLogin(authViewModel.Email, authViewModel.Password);
+            var user = _authService.GetUserForLogin(authViewModel.Email, authViewModel.Password);
 
             if (user == null) return CreateFailedRequestResult("Email or password is invalid");
 

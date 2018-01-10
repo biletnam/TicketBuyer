@@ -33,6 +33,40 @@ namespace TicketBuyer.DataAccessLayer.Interfaces
 
         IRepository<WishEvent> WishEventRepository { get; }
 
+        IRepository<Auth> AuthRepository { get; }
+
+        IRepository<Cancellation> CancellationRepository { get; }
+
+        IRepository<CompanyNews> CompanyNewsRepository { get; }
+
+        IRepository<EventNews> EventNewsRepository { get; }
+
+        IRepository<EventSale> EventSaleRepository { get; }
+
+        IRepository<EventStatus> EventStatusRepository { get; }
+
+        IRepository<EventType> EventTypeRepository { get; }
+
+        IRepository<GiftCertificate> GiftCertificateRepository { get; }
+
+        IRepository<Notification> NotificationRepository { get; }
+
+        IRepository<NotificationDefenition> NotificationDefenitionRepository { get; }
+
+        IRepository<OrderStatus> OrderStatusRepository { get; }
+
+        IRepository<PaymentType> PaymentTypeRepository { get; }
+
+        IRepository<Role> RoleRepository { get; }
+
+        IRepository<Sale> SaleRepository { get; }
+
+        IRepository<SalePlace> SalePlaceRepository { get; }
+
+        IRepository<SectorType> SectorTypeRepository { get; }
+
+        IRepository<UserPreference> UserPreferenceRepository { get; }
+
         void SaveChanges();
     }
 }

@@ -17,6 +17,16 @@ var ViewEventComponent = (function () {
         this.eventService = eventService;
         this.route = route;
     }
+    ViewEventComponent.prototype.addWishEvent = function () {
+        var _this = this;
+        var eventId = Number.parseInt(this.route.snapshot.paramMap.get('id'));
+        this.eventService.addWishEvent(eventId).then(function (response) {
+            var result = response.json();
+            if (result.state == 1) {
+                _this.successMessage = 'Event is added';
+            }
+        });
+    };
     ViewEventComponent.prototype.ngOnInit = function () {
         var _this = this;
         var eventId = Number.parseInt(this.route.snapshot.paramMap.get('id'));

@@ -31,6 +31,40 @@ namespace TicketBuyer.DataAccessLayer
 
         public DbSet<WishEvent> WishEvents { get; set; }
 
+        public DbSet<Auth> Auths { get; set; }
+
+        public DbSet<Cancellation> Cancellations { get; set; }
+
+        public DbSet<CompanyNews> CompanyNews { get; set; }
+
+        public DbSet<EventNews> EventNews { get; set; }
+
+        public DbSet<EventSale> EventSales { get; set; }
+
+        public DbSet<EventStatus> EventStatuses { get; set; }
+
+        public DbSet<EventType> EventTypes { get; set; }
+
+        public DbSet<GiftCertificate> GiftCertificates { get; set; }
+
+        public DbSet<Notification> Notifications { get; set; }
+
+        public DbSet<NotificationDefenition> NotificationDefenitions { get; set; }
+
+        public DbSet<OrderStatus> OrderStatuses { get; set; }
+
+        public DbSet<PaymentType> PaymentTypes { get; set; }
+
+        public DbSet<Role> Roles { get; set; }
+
+        public DbSet<Sale> Sales { get; set; }
+
+        public DbSet<SalePlace> SalePlaces { get; set; }
+
+        public DbSet<SectorType> SectorTypes { get; set; }
+
+        public DbSet<UserPreference> UserPreferences { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=TicketBuyer;Trusted_Connection=True;");
@@ -39,11 +73,6 @@ namespace TicketBuyer.DataAccessLayer
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
             base.OnModelCreating(modelbuilder);
-
-            //modelbuilder.Entity<Sector>()
-            //    .HasMany(s => s.Tickets)
-            //    .WithOne(t => t.Sector)
-            //    .OnDelete(DeleteBehavior.Restrict); // no ON DELETE
 
             modelbuilder.Entity<Ticket>()
                 .HasOne(t => t.Sector)
@@ -54,12 +83,11 @@ namespace TicketBuyer.DataAccessLayer
                 .HasOne(t => t.Sector)
                 .WithMany(s => s.Prices)
                 .OnDelete(DeleteBehavior.Restrict);
-            //modelbuilder.Entity(typeof(Ticket))
-            //    .HasOne(typeof(Sector), "Sector")
-            //    .WithMany()
-            //    .HasForeignKey("SectorId")
-            //    .OnDelete(DeleteBehavior.Restrict); // no ON DELETE
+
+            modelbuilder.Entity<User>()
+                .HasOne(x => x.Auth)
+                .WithOne(x => x.User)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
-
 }

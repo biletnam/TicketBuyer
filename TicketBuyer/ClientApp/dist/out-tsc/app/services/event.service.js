@@ -22,7 +22,7 @@ var EventService = (function () {
         return this.http.post('api/Event/AddEvent', {
             Name: title,
             DateTime: datetime,
-            Type: type,
+            TypeId: type,
             Information: information,
             PlaceId: placeId
         }).toPromise();
@@ -48,6 +48,9 @@ var EventService = (function () {
         var requestParams = new http_1.URLSearchParams();
         requestParams.append('eventId', eventId.toString());
         return this.http.get('api/EventComment/GetComments', { params: requestParams }).toPromise();
+    };
+    EventService.prototype.addWishEvent = function (eventId) {
+        return this.http.post('api/Profile/AddWishEvent', { WishEventId: eventId }).toPromise();
     };
     return EventService;
 }());

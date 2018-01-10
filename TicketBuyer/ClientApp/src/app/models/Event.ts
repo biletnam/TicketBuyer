@@ -7,5 +7,6 @@ export class Event {
     information: string;
     dateTime: Date;
     place: Place;
-    eventComments: Array<EventComment>
+    eventComments: Array<EventComment>;
+    eventPhotos: Array<string>;
 }

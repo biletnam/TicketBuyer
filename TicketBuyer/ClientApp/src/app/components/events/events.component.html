@@ -45,10 +45,11 @@
             </div>
             <div class="col-lg-4" *ngFor="let event of events">
                 <div class="events__item">
+                    <img src="{{event.eventPhotos[0]}}"/>
                     <div class="events__title">
                         <a class="events__link" routerLink="/view-event/{{event.id}}">{{event.name}}</a>
                     </div>
-                    <a class="events__link" routerLink="view-place/{{event.placeId}}">{{event.place.name}}</a>
+                    <a class="events__link" routerLink="/view-place/{{event.place.id}}">{{event.place.name}}</a>
                     <p>{{event.dateTime | date}}</p>
                 </div>
             </div>

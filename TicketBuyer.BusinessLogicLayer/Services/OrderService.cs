@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TicketBuyer.BusinessLogicLayer.DTO;
 using TicketBuyer.BusinessLogicLayer.Interfaces;
 using TicketBuyer.DataAccessLayer.Entities;
-using TicketBuyer.DataAccessLayer.Enums;
 using TicketBuyer.DataAccessLayer.Interfaces;
 
 namespace TicketBuyer.BusinessLogicLayer.Services
@@ -28,23 +26,18 @@ namespace TicketBuyer.BusinessLogicLayer.Services
             return orders.ToList();
         }
 
-        public void CreateOrder(OrderDTO orderDto)
+        public void CreateOrder(Order order)
         {
-            if (!_unitOfWork.UserRepository.Find(x => x.Id == orderDto.UserId).Any())
+            if (!_unitOfWork.UserRepository.Find(x => x.Id == order.UserId).Any())
             {
                 throw new Exception();
             }
 
-            var order = new Order
-            {
-                UserId = orderDto.Id,
-                Status = OrderStatus.Created
-            };
 
             _unitOfWork.OrderRepository.Add(order);
             _unitOfWork.SaveChanges();
 
-            _ticketService.AddTickets(orderDto.Tickets);
+           // _ticketService.AddTickets(order.Tickets.ToList());
         }
 
         public void CancelOrder(int orderId)
@@ -56,7 +49,7 @@ namespace TicketBuyer.BusinessLogicLayer.Services
                 throw new Exception();
             }
 
-            order.Status = OrderStatus.Canceled;
+            //order.Status = OrderStatus.Canceled;
             _ticketService.RemoveTickets(order.Tickets.ToList());
             _unitOfWork.OrderRepository.Update(order);
             _unitOfWork.SaveChanges();

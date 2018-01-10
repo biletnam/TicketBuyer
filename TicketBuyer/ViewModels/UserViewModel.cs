@@ -1,4 +1,4 @@
-using TicketBuyer.DataAccessLayer.Enums;
+using TicketBuyer.DataAccessLayer.Entities;
 
 namespace TicketBuyer.ViewModels
 {
@@ -8,6 +8,6 @@ namespace TicketBuyer.ViewModels
 
         public string Email { get; set; }
 
-        public Role Role { get; set; }
+        public int Role { get; set; }
     }
 }

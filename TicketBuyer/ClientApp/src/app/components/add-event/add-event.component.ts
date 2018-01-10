@@ -15,6 +15,7 @@ export class AddEventComponent implements OnInit {
     private form: FormGroup;
     private eventFiltersData: EventFiltersData;
     private errorMessage: string;
+    private fileList: FileList;
 
     constructor(
         private eventService: EventService,
@@ -40,6 +41,10 @@ export class AddEventComponent implements OnInit {
                 this.errorMessage = result.message;
             }
         });
+    }
+
+    fileChange(event) {
+        this.fileList = event.target.files;
     }
 
     onSubmit() {

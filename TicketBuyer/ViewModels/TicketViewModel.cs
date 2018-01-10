@@ -10,6 +10,6 @@ namespace TicketBuyer.ViewModels
 
         public SectorViewModel Sector { get; set; }
 
-        //public SeatingViewModel Seating {get;set;}
+        public SeatingViewModel Seating {get;set;}
     }
 }

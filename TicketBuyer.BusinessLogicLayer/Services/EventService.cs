@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TicketBuyer.BusinessLogicLayer.Interfaces;
 using TicketBuyer.DataAccessLayer.Entities;
-using TicketBuyer.DataAccessLayer.Enums;
 using TicketBuyer.DataAccessLayer.Interfaces;
 
 namespace TicketBuyer.BusinessLogicLayer.Services
@@ -27,22 +26,23 @@ namespace TicketBuyer.BusinessLogicLayer.Services
 
             eventEntity.EventComments = _eventCommentService.GetComments(id);
             eventEntity.Place = _placeService.GetPlaceLite(eventEntity.PlaceId);
+            eventEntity.EventPhotos = _unitOfWork.EventPhotoRepository.Find(x => x.EventId == id).ToList();
 
             return eventEntity;
         }
 
-        public IList<Event> GetEvents(EventType? type, EventStatus? status, DateTime? startDate, DateTime? endDate, int? placeId)
+        public IList<Event> GetEvents(int? type, int? status, DateTime? startDate, DateTime? endDate, int? placeId)
         {
             var data = _unitOfWork.EventRepository.GetAll();
 
             if (type.HasValue)
             {
-                data = data.Where(x => x.Type == type);
+                data = data.Where(x => x.TypeId == type);
             }
 
             if (status.HasValue)
             {
-                data = data.Where(x => x.Status == status);
+                data = data.Where(x => x.StatusId == status);
             }
 
             if (startDate.HasValue)
@@ -63,6 +63,7 @@ namespace TicketBuyer.BusinessLogicLayer.Services
             data.ToList().ForEach(x =>
             {
                 x.Place = _placeService.GetPlaceLite(x.PlaceId);
+                x.EventPhotos = _unitOfWork.EventPhotoRepository.Find(y => y.EventId == x.Id).Take(1).ToList();
             });
 
             return data.ToList();
@@ -79,6 +80,7 @@ namespace TicketBuyer.BusinessLogicLayer.Services
                 throw new Exception();
             }
 
+            eventEntity.StatusId = 1;
             _unitOfWork.EventRepository.Add(eventEntity);
             _unitOfWork.SaveChanges();
         }

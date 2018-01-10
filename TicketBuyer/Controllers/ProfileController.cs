@@ -31,12 +31,13 @@ namespace TicketBuyer.Controllers
 
             var userPageViewModel = new UserPageViewModel
             {
-                User = new UserViewModel { Username = user.Username, Email = user.Email },
+                User = new UserViewModel { Username = user.Username, /*Email = user.Email*/ },
                 WishEvents = wishEvents.Select(x => new EventLiteViewModel
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    DateTime = x.DateTime
+                    DateTime = x.DateTime,
+                    EventPhotos = x.EventPhotos.Select(y => $"/images/events/{y.Photo}").ToList()
                 }).ToList(),
                 Orders = orders.Select(x => new OrderViewModel
                 {
@@ -53,7 +54,8 @@ namespace TicketBuyer.Controllers
                             Place = new PlaceViewModel { Address = y.Event.Place.Address, Name = y.Event.Place.Name },
                         },
                         Sector = new SectorViewModel { Title = y.Sector.Title },
-                        //Seating
+                        Price = y.Price,
+                        Seating = y.Seating != null ? new SeatingViewModel {Row = y.Seating.Row, Seat = y.Seating.Seat} : null 
                     }).ToList()
                 }).ToList()
             };
@@ -64,6 +66,18 @@ namespace TicketBuyer.Controllers
         [HttpDelete("RemoveWish")]
         public IActionResult RemoveWish(int wishEventId)
         {
+            var user = _userService.GetUser(User.Identity.Name);
+            _wishEventService.RemoveWishEvent(wishEventId);
+
+            return CreateSuccessRequestResult();
+        }
+
+        [HttpPost("AddWishEvent")]
+        public IActionResult AddWishEvent([FromBody]WishEventViewModel wishEventViewModel)
+        {
+            var user = _userService.GetUser(User.Identity.Name);
+            _wishEventService.AddWishEvent(user.Id, wishEventViewModel.WishEventId);
+
             return CreateSuccessRequestResult();
         }
     }

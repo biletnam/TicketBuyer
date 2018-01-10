@@ -13,12 +13,23 @@ import { RequestResult } from '../../models/RequestResult';
 
 export class ViewEventComponent implements OnInit {
     private event: Event;
+    private successMessage: string;
 
     constructor(
         private eventService: EventService,
         private route: ActivatedRoute
 
     ) { }
+
+    addWishEvent() {
+        let eventId = Number.parseInt(this.route.snapshot.paramMap.get('id'));
+        this.eventService.addWishEvent(eventId).then(response => {
+            let result = response.json() as RequestResult;
+            if (result.state == 1) {
+                this.successMessage = 'Event is added';
+            }
+        })
+    }
 
     ngOnInit() {
         let eventId = Number.parseInt(this.route.snapshot.paramMap.get('id'));

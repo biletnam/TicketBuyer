@@ -1,7 +1,54 @@
-﻿body {
+body {
     background-color: $body-background-color;
     font-family: $font-text-family;
     font-size: $font-text-size;
     font-weight: $font-text-weight;
     color: $color-default;
+}
+
+.main {
+    margin-top: 80px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.events {
+
+    &__link {
+        transition: all ease 0.4s;
+
+        &:link,
+        &:visited {
+            display: block;
+            color: $color-default;
+            text-decoration: none;
+        }
+
+        &:hover {
+            color: $color-active;
+            transition: all ease 0.4s;
+        }
+    }
+
+    &__item {
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        border: #F5F5F5 solid 1px;
+        transition: all ease 0.4s;
+
+        &:hover,
+        &--active {
+            border: solid 1px $color-active;
+            transition: all ease 0.4s;
+        }
+    }
+
+    &__title {
+        font-size: 20px;
+        margin-bottom: 0;
+        line-height: 1.5;
+    }
 }

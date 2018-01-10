@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="card__title title">Photos</div>
+            <div *ngFor="let photo of place?.placePhotos">
+                <img src="{{photo}}" class="photo"/>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9">
+        <div class="card">
+            <div class="title">{{place?.name}}</div>
+            <div class="card__text">{{place?.address}}</div>
+            <div class="card__text">{{place?.information}}</div>
+            <br />
+            <div class="title">Sectors</div>
+            <table class="table table-striped" *ngIf="place?.sectors.length > 0">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Limit</th>
+                    </tr>
+                    <tr *ngFor="let sector of place?.sectors">
+                        <td>{{sector.title}}</td>
+                        <td>{{sectorTypes[sector.typeId]}}</td>
+                        <td>{{sector.limit}}</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="card">
+            <div class="title">Events</div>
+            <div class="col-lg-4" *ngFor="let event of place?.events">
+                <div class="events__item">
+                    <img src="{{event.eventPhotos[0]}}" />
+                    <div class="events__title">
+                        <a class="events__link" routerLink="/view-event/{{event.id}}">{{event.name}}</a>
+                    </div>
+                    <p>{{event.dateTime | date}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

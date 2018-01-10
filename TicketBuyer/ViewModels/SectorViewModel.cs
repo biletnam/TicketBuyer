@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using TicketBuyer.DataAccessLayer.Entities;
-using TicketBuyer.DataAccessLayer.Enums;
 
 namespace TicketBuyer.ViewModels
 {
@@ -11,10 +10,10 @@ namespace TicketBuyer.ViewModels
 
         public string Title { get; set; }
 
-        public SectorType Type { get; set; }
-
         public int Limit { get; set; }
 
-       // public ICollection<Seating> Seatings { get; set; }
+        public int TypeId { get; set; }
+
+        public IList<SeatingLiteViewModel> Seatings { get; set; }
     }
 }

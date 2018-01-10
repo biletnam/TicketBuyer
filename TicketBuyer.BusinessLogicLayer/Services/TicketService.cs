@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TicketBuyer.BusinessLogicLayer.DTO;
 using TicketBuyer.BusinessLogicLayer.Interfaces;
 using TicketBuyer.DataAccessLayer.Entities;
 using TicketBuyer.DataAccessLayer.Interfaces;
@@ -24,11 +23,11 @@ namespace TicketBuyer.BusinessLogicLayer.Services
             return tickets.ToList();
         }
 
-        public void AddTickets(IList<TicketDTO> tickets)
+        public void AddTickets(IList<Ticket> tickets)
         {
-            foreach (var ticketDto in tickets)
+            foreach (var ticket in tickets)
             {
-                AddTicket(ticketDto);
+                AddTicket(ticket);
             }
         }
 
@@ -40,18 +39,8 @@ namespace TicketBuyer.BusinessLogicLayer.Services
             }    
         }
 
-        private void AddTicket(TicketDTO ticketDto)
+        private void AddTicket(Ticket ticket)
         {
-            var ticket = new Ticket
-            {
-                OrderId = ticketDto.OrderId,
-                EventId = ticketDto.EventId,
-                SectorId = ticketDto.SectorId,
-                SeatingId = ticketDto.SeatingId,
-                Price = ticketDto.Price
-
-            };
-
             _unitOfWork.TicketRepository.Add(ticket);
             _unitOfWork.SaveChanges();
         }

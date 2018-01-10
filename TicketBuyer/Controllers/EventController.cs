@@ -1,9 +1,9 @@
 using System;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TicketBuyer.BusinessLogicLayer.Interfaces;
 using TicketBuyer.DataAccessLayer.Entities;
-using TicketBuyer.DataAccessLayer.Enums;
 using TicketBuyer.ViewModels;
 
 namespace TicketBuyer.Controllers
@@ -14,15 +14,17 @@ namespace TicketBuyer.Controllers
     {
         private readonly IEventService _eventService;
         private readonly IPlaceService _placeService;
+        private readonly ITypeService _typeService;
 
-        public EventController(IEventService eventService, IPlaceService placeService)
+        public EventController(IEventService eventService, IPlaceService placeService, ITypeService typeService)
         {
             _eventService = eventService;
             _placeService = placeService;
+            _typeService = typeService;
         }
 
         [HttpGet("GetEvents")]
-        public IActionResult GetEvents(EventType? type, EventStatus? status, DateTime? startDate, DateTime? endDate, int? placeId)
+        public IActionResult GetEvents(int? type, int? status, DateTime? startDate, DateTime? endDate, int? placeId)
         {
             var events = _eventService.GetEvents(type, status, startDate, endDate, placeId);
 
@@ -30,10 +32,11 @@ namespace TicketBuyer.Controllers
             {
                 Id = x.Id,
                 Name = x.Name,
-                Type = x.Type,
+                TypeId = x.TypeId,
                 DateTime = x.DateTime,
-                Status = x.Status,
-                Place = new PlaceLiteViewModel { Id = x.PlaceId, Name = x.Place.Name, Address = x.Place.Address}
+                StatusId = x.StatusId,
+                Place = new PlaceLiteViewModel { Id = x.PlaceId, Name = x.Place.Name, Address = x.Place.Address},
+                EventPhotos = x.EventPhotos?.Select(y => $"/images/events/{y.Photo}").ToList()
             }));
         }
 
@@ -48,15 +51,14 @@ namespace TicketBuyer.Controllers
                     Name = x.Name,
                     Address = x.Address
                 }).ToList(),
-                Types = Enum.GetValues(typeof(EventType)).Cast<EventType>()
-                    .ToDictionary(x => (int) x, x => x.ToString()),
-                Statuses = Enum.GetValues(typeof(EventStatus)).Cast<EventStatus>()
-                    .ToDictionary(x => (int) x, x => x.ToString())
+                Types = _typeService.GetEventTypes(),
+                Statuses = _typeService.GetEventStatuses()
             };
 
             return CreateSuccessRequestResult(data: viewModel);
         }
 
+        [Authorize]
         [HttpGet("GetEvent")]
         public IActionResult GetEvent(int eventId)
         {
@@ -68,8 +70,8 @@ namespace TicketBuyer.Controllers
                 Name = eventEntity.Name,
                 Information = eventEntity.Information,
                 DateTime = eventEntity.DateTime,
-                Type = eventEntity.Type,
-                Status = eventEntity.Status,
+                TypeId = eventEntity.TypeId,
+                StatusId = eventEntity.StatusId,
                 EventComments = eventEntity.EventComments.Select(x => new EventCommentViewModel
                 {
                     Id = x.Id,
@@ -82,7 +84,8 @@ namespace TicketBuyer.Controllers
                     Id = eventEntity.PlaceId,
                     Name = eventEntity.Place.Name,
                     Address = eventEntity.Place.Address
-                }
+                },
+                EventPhotos = eventEntity.EventPhotos?.Select(x => $"/images/events/{x.Photo}").ToList()
             });
         }
 
@@ -94,9 +97,10 @@ namespace TicketBuyer.Controllers
                 Name = eventViewModel.Name,
                 Information = eventViewModel.Information,
                 DateTime = eventViewModel.DateTime,
-                Type = eventViewModel.Type,
+                TypeId = eventViewModel.TypeId,
                 PlaceId = eventViewModel.PlaceId
             });
+
             return CreateSuccessRequestResult();
         }
     }

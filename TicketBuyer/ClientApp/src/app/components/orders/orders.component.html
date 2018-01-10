@@ -31,7 +31,7 @@
                             <td>{{ticket.event.name}}</td>
                             <td>{{ticket.event.dateTime | date}}</td>
 
-                            <td>Place, Address, {{ticket.sector.title}}, Seating</td>
+                            <td>{{ticket.event.place.name}}, {{ticket.event.place.address}}, {{ticket.sector.title}}{{ticket.seating != null ? ', ' + ticket.seating.row + '-' + ticket.seating.seat : '' }}</td>
 
                             <td>{{ticket.price}}</td>
                         </tr>

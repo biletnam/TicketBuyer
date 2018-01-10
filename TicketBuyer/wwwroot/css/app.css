@@ -5,6 +5,37 @@
   font-weight: 400;
   color: #787878; }
 
+.main {
+  margin-top: 80px; }
+
+.row {
+  display: flex;
+  flex-wrap: wrap; }
+
+.events__link {
+  transition: all ease 0.4s; }
+  .events__link:link, .events__link:visited {
+    display: block;
+    color: #787878;
+    text-decoration: none; }
+  .events__link:hover {
+    color: #ffd33e;
+    transition: all ease 0.4s; }
+
+.events__item {
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border: #F5F5F5 solid 1px;
+  transition: all ease 0.4s; }
+  .events__item:hover, .events__item--active {
+    border: solid 1px #ffd33e;
+    transition: all ease 0.4s; }
+
+.events__title {
+  font-size: 20px;
+  margin-bottom: 0;
+  line-height: 1.5; }
+
 .card {
   padding-bottom: 30px; }
   .card__title {

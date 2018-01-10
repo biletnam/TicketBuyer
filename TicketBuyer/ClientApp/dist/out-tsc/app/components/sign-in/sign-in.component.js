@@ -27,6 +27,8 @@ var SignInComponent = (function () {
         this.authService.login(this.form.get('email').value, this.form.get('password').value)
             .then(function (result) {
             if (result.state == 1) {
+                localStorage.setItem("currentUser", JSON.stringify(result.data));
+                window.location.reload();
                 _this.router.navigate(["/main"]);
             }
             else {
@@ -36,6 +38,10 @@ var SignInComponent = (function () {
     };
     return SignInComponent;
 }());
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], SignInComponent.prototype, "onLogin", void 0);
 SignInComponent = __decorate([
     core_1.Component({
         selector: 'sign-in',

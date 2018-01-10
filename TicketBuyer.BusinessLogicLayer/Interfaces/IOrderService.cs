@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using TicketBuyer.BusinessLogicLayer.DTO;
 using TicketBuyer.DataAccessLayer.Entities;
 
 namespace TicketBuyer.BusinessLogicLayer.Interfaces
@@ -8,7 +7,7 @@ namespace TicketBuyer.BusinessLogicLayer.Interfaces
     {
         IList<Order> GetOrders(int userId);
 
-        void CreateOrder(OrderDTO orderDto);
+        void CreateOrder(Order orderDto);
 
         void CancelOrder(int orderId);
 

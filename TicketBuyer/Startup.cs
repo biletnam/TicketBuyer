@@ -22,7 +22,7 @@ namespace TicketBuyer
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;  
             }).AddCookie();
 
             services.AddMvc();
@@ -40,20 +40,32 @@ namespace TicketBuyer
             services.AddScoped<IRepository<Price>, PriceRepository>();
             services.AddScoped<IRepository<WishEvent>, WishEventRepository>();
             services.AddScoped<IRepository<User>, UserRepository>();
+            services.AddScoped<IRepository<EventType>, EventTypeRepository>();
+            services.AddScoped<IRepository<EventStatus>, EventStatusRepository>();
+            services.AddScoped<IRepository<OrderStatus>, OrderStatusRepository>();
+            services.AddScoped<IRepository<Auth>, AuthRepository>();
+            services.AddScoped<IRepository<SectorType>, SectorTypeRepository>();
+            services.AddScoped<IRepository<CompanyNews>, CompanyNewsRepository>();
+            services.AddScoped<IRepository<EventNews>, EventNewsRepository>();
+            services.AddScoped<IRepository<SalePlace>, SalePlaceRepository>();
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ITypeService, TypeService>();
             services.AddScoped<IEventCommentService, EventCommentService>();
             services.AddScoped<IEventSectorsService, EventSectorsService>();
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IPlaceService, PlaceService>();
-            services.AddScoped<IPriceService, PriceService>();
-            services.AddScoped<ISectorService, SectorService>();
+            //services.AddScoped<IPriceService, PriceService>();
+            //services.AddScoped<ISectorService, SectorService>();
             services.AddScoped<ITicketService, TicketService>();
             services.AddScoped<IWishEventService, WishEventService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAboutService, AboutService>();
 
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,33 +79,16 @@ namespace TicketBuyer
             app.UseStaticFiles();
 
             app.UseAuthentication();
-
-            //app.Run(async context =>
-            //{
-            //    if (!context.User.Identities.Any(identity => identity.IsAuthenticated))
-            //    {
-            //        var user = new ClaimsPrincipal(new ClaimsIdentity(new[] {new Claim(ClaimTypes.Name, "bob")},
-            //            CookieAuthenticationDefaults.AuthenticationScheme));
-            //        await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, user);
-
-            //        context.Response.ContentType = "text/plain";
-            //        await context.Response.WriteAsync("Hello First timer");
-            //        return;
-            //    }
-
-            //    context.Response.ContentType = "text/plain";
-            //    await context.Response.WriteAsync("Hello old timer");
-            //});
-
-      app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-                routes.MapSpaFallbackRoute(
-                    name: "spa-fallback",
-                    defaults: new {controller = "Home", action = "Index"});
-            });
+            
+            app.UseMvc(routes =>
+                  {
+                      routes.MapRoute(
+                          name: "default",
+                          template: "{controller=Home}/{action=Index}/{id?}");
+                      routes.MapSpaFallbackRoute(
+                          name: "spa-fallback",
+                          defaults: new { controller = "Home", action = "Index" });
+                  });
         }
     }
 }

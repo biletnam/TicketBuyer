@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using TicketBuyer.DataAccessLayer.Enums;
 
 namespace TicketBuyer.DataAccessLayer.Entities
 {
@@ -12,12 +11,15 @@ namespace TicketBuyer.DataAccessLayer.Entities
 
         public int PlaceId { get; set; }
 
-        public SectorType Type { get; set; }
+        public int TypeId { get; set; }
 
         public int Limit { get; set; }
 
         [ForeignKey("PlaceId")]
         public Place Place { get; set; }
+
+        [ForeignKey("TypeId")]
+        public SectorType Type { get; set; }
 
         public ICollection<Seating> Seatings { get; set; }
 

@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="row row-eq-height">
+            
+            <div class="col-lg-12">
+                <div class="title">Places</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3" *ngFor="let place of places">
+                <div class="events__item">
+                    <img src="{{place?.placePhotos[0]}}" style="max-width: 100%"/>
+                    <div class="events__title">
+                        <a class="events__link" routerLink="/view-place/{{place?.id}}">{{place?.name}}</a>
+
+                    </div>
+                    {{place?.address}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

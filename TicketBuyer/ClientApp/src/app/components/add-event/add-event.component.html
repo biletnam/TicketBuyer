@@ -28,13 +28,13 @@
             <div class="form-group">
                 <label for="datetime">Event Type</label>
                 <select class="form__input input" id="type" formControlName="type" [formGroup]="form">
-                    <option *ngFor="let type of addEventPage?.types | types" [value]="type.key">{{type.value}}</option>
+                    <option *ngFor="let type of eventFiltersData?.types | types" [value]="type.key">{{type.value}}</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="datetime">Place</label>
                 <select class="form__input input" id="placeId" formControlName="placeId" [formGroup]="form">
-                    <option *ngFor="let place of addEventPage?.places" [value]="place.id">{{place.name}}</option>
+                    <option *ngFor="let place of eventFiltersData?.places" [value]="place.id">{{place.name}}</option>
                 </select>
             </div>
             <div class="form-group">

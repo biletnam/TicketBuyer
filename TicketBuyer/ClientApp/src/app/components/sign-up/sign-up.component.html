@@ -1,42 +1,46 @@
 <div class="row">
-	<div class="col-lg-6 col-lg-offset-3">
-		<div class="card">
-			<div class="title card__title">
-				Registration
-			</div>
-		    <div class="card__text">
-		        Please, fill out the next fields to create a new account and have access to the site.
-		        Already have the account? <a href="#">Sign in</a> to use it.
-		    </div>
-		    <br />
-		    <div class="card__text success" *ngIf="isSignedUp">
-		        Congratulations, you are registered! Please, sign in.
-		    </div>
-		    <div class="card__text error" *ngIf="errorMessage">
-		        {{errorMessage}}
-		    </div>
-		</div>
-	</div>
-	<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
-		<div class="col-lg-4 col-lg-offset-4">
-			<div class="form-group">
-				<label for="username">Username</label>
-			    <input type="text" class="form__input input" id="username" formControlName="username" [formGroup]="form" required/>
-			    <div class="error" *ngIf="form.get('username').invalid && (form.get('username').dirty || form.get('username').touched)">Username is required</div>
-			</div>
-			<div class="form-group">
-				<label for="email">Email</label>
-			    <input type="email" class="form__input input" id="email" formControlName="email" [formGroup]="form" required/>
-			    <div class="error" *ngIf="form.get('email').hasError('email') && (form.get('email').dirty || form.get('email').touched)">Email doesn't match</div>
-			</div>
-			<div class="form-group">
-				<label for="password">Password</label>
-			    <input type="password" class="form__input input" id="password" formControlName="password" [formGroup]="form" required/>
-			    <div class="error" *ngIf="form.get('password').invalid && (form.get('password').dirty || form.get('password').touched)">Password is required</div>
-			</div>
-			<div class="form-group">
-				<button type="submit" class="form__button button" [disabled]="!form.valid">Submit</button>
-			</div>
-		</div>
-	</form>
+    <div class="col-lg-6 col-lg-offset-3">
+        <div class="card">
+            <div class="title card__title">
+                Registration
+            </div>
+            <div class="card__text">
+                Please, fill out the next fields to create a new account and have access to the site.
+                Already have the account? <a href="#">Sign in</a> to use it.
+            </div>
+            <br />
+            <div class="card__text success" *ngIf="isSignedUp">
+                Congratulations, you are registered! Please, sign in.
+            </div>
+            <div class="card__text error" *ngIf="errorMessage">
+                {{errorMessage}}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3"></div>
+    <div class="col-lg-12">
+        <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="col-lg-4 col-lg-offset-4">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form__input input" id="username" formControlName="username" [formGroup]="form" required/>
+                    <div class="error" *ngIf="form.get('username').invalid && (form.get('username').dirty || form.get('username').touched)">Username is required</div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form__input input" id="email" formControlName="email" [formGroup]="form" required/>
+                    <div class="error" *ngIf="form.get('email').hasError('email') && (form.get('email').dirty || form.get('email').touched)">Email doesn't match</div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form__input input" id="password" formControlName="password" [formGroup]="form" required/>
+                    <div class="error" *ngIf="form.get('password').invalid && (form.get('password').dirty || form.get('password').touched)">Password is required</div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="form__button button" [disabled]="!form.valid">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+	
 </div>

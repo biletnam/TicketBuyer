@@ -8,6 +8,8 @@ import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 import { OrderService } from './services/order.service';
 import { EventService } from './services/event.service';
+import { PlaceService } from './services/place.service';
+import { AboutService } from './services/about.service';
 
 import { AppComponent } from './components/app/app.component';
 import { TopNavigationComponent } from './components/top-navigation/top-navigation.component';
@@ -21,6 +23,10 @@ import { AddEventComponent } from './components/add-event/add-event.component';
 import { EventsComponent } from './components/events/events.component';
 import { ViewEventComponent } from './components/view-event/view-event.component';
 import { EventCommentsComponent } from './components/event-comments/event-comments.component';
+import { PlacesComponent } from './components/places/places.component';
+import { ViewPlaceComponent } from './components/view-place/view-place.component';
+import { AddPlaceComponent } from './components/add-place/add-place.component';
+import { AboutComponent } from './components/about/about.component';
 import { StatusFilter } from './filters/StatusFilter';
 import { TypesPipe } from './filters/TypesPipe';
 
@@ -31,7 +37,11 @@ const appRoutes: Routes = [
     { path: 'sign-up', component: SignUpComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'add-event', component: AddEventComponent },
-    { path: 'view-event/:id', component: ViewEventComponent }
+    { path: 'view-event/:id', component: ViewEventComponent },
+    { path: 'places', component: PlacesComponent },
+    { path: 'view-place/:id', component: ViewPlaceComponent },
+    { path: 'add-place', component: AddPlaceComponent },
+    { path: 'about', component: AboutComponent }
 ];
 @NgModule({
     declarations: [
@@ -47,6 +57,10 @@ const appRoutes: Routes = [
         EventsComponent,
         ViewEventComponent,
         EventCommentsComponent,
+        PlacesComponent,
+        ViewPlaceComponent,
+        AddPlaceComponent,
+        AboutComponent,
         StatusFilter,
         TypesPipe
     ],
@@ -59,7 +73,7 @@ const appRoutes: Routes = [
         ReactiveFormsModule,
         FormsModule
     ],
-    providers: [AuthService, UserService, OrderService, EventService],
+    providers: [AuthService, UserService, OrderService, EventService, PlaceService, AboutService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -38,6 +38,9 @@ var AddEventComponent = (function () {
             }
         });
     };
+    AddEventComponent.prototype.fileChange = function (event) {
+        this.fileList = event.target.files;
+    };
     AddEventComponent.prototype.onSubmit = function () {
         var _this = this;
         this.eventService.addEvent(this.form.get('title').value, this.form.get('information').value, this.form.get('datetime').value, this.form.get('type').value, this.form.get('placeId').value).then(function (response) {

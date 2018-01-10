@@ -12,11 +12,11 @@ namespace TicketBuyer.BusinessLogicLayer.Interfaces
 
         IList<Place> GetPlaces();
 
-        void AddPlace(Place place);
+        void AddPlace(Place place, IList<SectorDTO> sectors);
 
         void UpdatePlace(Place place);
 
-        void UpdateSectors(int placeId, IList<SectorDTO> sectors);
+        void UpdateSectors(int placeId, IList<Sector> sectors);
 
         void RemovePlace(int placeId);
     }

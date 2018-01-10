@@ -1,3 +1,8 @@
 <ul class="top-navigation">
-	<li class="top-navigation__item" routerLinkActive="top-navigation__item--active" *ngFor="let link of links"><a class="top-navigation__link" routerLink={{link.href}}>{{link.title}}</a></li>
+    <ng-container *ngFor="let link of links">
+        <li class="top-navigation__item" *ngIf="link.show" routerLinkActive="top-navigation__item--active">
+            <a class="top-navigation__link" routerLink={{link.href}}>{{link.title}}</a>
+        </li>
+    </ng-container>
+    
 </ul>

@@ -10,7 +10,12 @@ var core_1 = require("@angular/core");
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'app';
+        //onLogin(currentUser: User) {
+        //    this.userSe
+        //}
     }
+    AppComponent.prototype.ngOnInit = function () {
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([

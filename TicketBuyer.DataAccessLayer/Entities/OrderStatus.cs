@@ -1,0 +1,9 @@
+﻿namespace TicketBuyer.DataAccessLayer.Entities
+{
+    public class OrderStatus
+    {
+        public int Id { get; set; }
+
+        public string Title { get; set; }
+    }
+}

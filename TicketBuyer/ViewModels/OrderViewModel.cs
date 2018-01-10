@@ -1,6 +1,5 @@
 using System.Collections.Generic;
-using TicketBuyer.BusinessLogicLayer.DTO;
-using TicketBuyer.DataAccessLayer.Enums;
+using TicketBuyer.DataAccessLayer.Entities;
 
 namespace TicketBuyer.ViewModels
 {

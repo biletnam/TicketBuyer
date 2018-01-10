@@ -18,7 +18,7 @@ export class EventService {
             {
                 Name: title,
                 DateTime: datetime,
-                Type: type,
+                TypeId: type,
                 Information: information,
                 PlaceId: placeId
             }).toPromise();
@@ -51,5 +51,9 @@ export class EventService {
         requestParams.append('eventId', eventId.toString());
 
         return this.http.get('api/EventComment/GetComments', { params: requestParams }).toPromise();
+    }
+
+    addWishEvent(eventId: number) {
+        return this.http.post('api/Profile/AddWishEvent', { WishEventId: eventId }).toPromise();
     }
 }

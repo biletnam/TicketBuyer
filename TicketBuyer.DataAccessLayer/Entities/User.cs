@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using TicketBuyer.DataAccessLayer.Enums;
 
 namespace TicketBuyer.DataAccessLayer.Entities
 {
@@ -11,19 +10,25 @@ namespace TicketBuyer.DataAccessLayer.Entities
         public int Id { get; set; }
 
         public string Username { get; set; }
+        
+        public int AuthId { get; set; }
 
-        public string Email { get; set; }
+        public int RoleId { get; set; }
 
-        public string Password { get; set; }
-
-        public string Salt { get; set; }
-
+        [ForeignKey("RoleId")]
         public Role Role { get; set; }
+
+        [ForeignKey("AuthId")]
+        public Auth Auth { get; set; }
 
         public ICollection<EventComment> EventComments { get; set; }
 
         public ICollection<Order> Orders { get; set; }
 
         public ICollection<WishEvent> WishEvents { get; set; }
+
+        public ICollection<UserPreference> UserPreferences { get; set; }
+
+        public ICollection<Notification> Notifications { get; set; }
     }
 }

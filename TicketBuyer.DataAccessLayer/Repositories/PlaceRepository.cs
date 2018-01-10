@@ -28,7 +28,7 @@ namespace TicketBuyer.DataAccessLayer.Repositories
 
         public IQueryable<Place> GetAll()
         {
-            return _dbContext.Places.AsQueryable();
+            return _dbContext.Places.Include(x => x.PlacePhotos).AsQueryable();
         }
 
         public void Remove(Place item)

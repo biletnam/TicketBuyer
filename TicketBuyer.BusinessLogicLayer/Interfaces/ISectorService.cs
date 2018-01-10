@@ -1,21 +1,21 @@
-﻿using System.Collections.Generic;
-using TicketBuyer.BusinessLogicLayer.DTO;
+﻿//using System.Collections.Generic;
+//using TicketBuyer.BusinessLogicLayer.DTO;
 
-namespace TicketBuyer.BusinessLogicLayer.Interfaces
-{
-    public interface ISectorService
-    {
-        SectorDTO GetSector(int sectorId);
+//namespace TicketBuyer.BusinessLogicLayer.Interfaces
+//{
+//    public interface ISectorService
+//    {
+//        SectorDTO GetSector(int sectorId);
 
-        IList<SectorDTO> GetSectors(int placeId);
+//        IList<SectorDTO> GetSectors(int placeId);
 
-        void AddSector(int placeId, SectorDTO sectorViewModel);
+//        void AddSector(int placeId, SectorDTO sectorViewModel);
 
-        void AddSectors(int placeId, IList<SectorDTO> sectors);
+//        void AddSectors(int placeId, IList<SectorDTO> sectors);
 
-        void UpdateSector(SectorDTO sectorViewModel);
+//        void UpdateSector(SectorDTO sectorViewModel);
 
-        void RemoveSector(int sectorId);
+//        void RemoveSector(int sectorId);
 
-    }
-}
+//    }
+//}
